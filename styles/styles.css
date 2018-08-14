@@ -1,0 +1,55 @@
+.stage { 
+    /* width: 300px; */
+    min-width: 300px;
+    margin: 0 auto;
+    height: 600px;
+    border: 1px solid black;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+} 
+
+.ball {
+    position: absolute;
+    /* width: 100px; */
+    /* height: 100px; */
+    /* border-radius: 50%; */
+    /* background: blue; */
+    top: -100px;
+}
+
+button {
+    position: absolute;
+    font-size: 30px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+}
+
+#score {
+    position: absolute;
+    font-size: 30px;
+    padding: 10px;
+    top: 0;
+    right: 0;
+}
+
+#lives {
+    position: absolute;
+    font-size: 30px;
+    padding: 10px;
+    top: 0;
+    left: 0;
+}
+
+.arrows {
+    font-size: 30px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.arrow {
+    display: inline-block;
+}
