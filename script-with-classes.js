@@ -3,15 +3,37 @@ const game = {};
 
 // declare score, update score dynamically 
 game.score = 0;
-game.lives = 10;
+game.lives = 3;
 game.speed = 2000;
-game.numberOfBalls = 20;
+game.time = 30000;
+game.numberOfBalls = 50;
+game.ballTypes = [
+    'assets/hair.png',
+    'assets/hilaryfixed.png'
+];
+
+let randomNum = Math.floor(Math.random() * 2);
 
 game.getScreenWidth = () => {
     const stageWidth = $(window).width() / 2;
     $('.stage').css('width', stageWidth);
 }
 
+game.loadingScreen = () => {
+    $('.stage').children('div', 'img').toggle(false);
+}
+
+game.startTimer = () => {
+    $('#timer').text(game.time /1000 + ':00');
+    const timer = setInterval(function () {
+        game.time -= 1000;
+        $('#timer').text(game.time /1000 + ':00');
+        if (game.time == 0) {
+            clearInterval(timer);
+            if (alert(`times up! your score is ${game.score} play again?`)){} else {window.location.reload()} 
+        } 
+    }, 1000);
+}
 
 game.responsiveResize = () => {
     // $('.stage').css('width', '50vw');
@@ -82,19 +104,21 @@ game.moveTrump = () => {
 
 game.displayBall = (index) => {
     const $ball = $(`#ball${index}`);
-    const ballHTML = `<img src="assets/hair.png" class="ball" id="ball${index}">`;
+    const ballHTML = `<img src="${game.ballTypes[Math.floor(Math.random() * 2)]}" class="ball" id="ball${index}">`;
     $('.stage').append(ballHTML);
     $('.ball').css({
         // 'left': ( Math.floor(Math.random() * 3) )*game.interval,
         'width': game.interval,
         // 'background-color': 'red'
     });
+    
 }
 
 // add a div called ball to the stage
 // give it a random x position
 // animate the ball so it falls to the bottom of the page;
 game.moveBall = (index) => {
+    console.log( $('.ball').attr('src'));
     const $ball = $(`#ball${index}`);
     $ball.css('left', (Math.floor(Math.random() * 3))*game.interval );
     $ball.animate({
@@ -123,8 +147,8 @@ game.checkPosition = (index) => {
      
         if (ballPositionY > trumpPositionY - 50 // 550 - 580 
             && ballPositionY < trumpPositionY - 20
-            // && trumpPositionX < ballPositionX + 10
-            && trumpPositionX == ballPositionX ) {
+            && trumpPositionX == ballPositionX 
+            && $ball.attr('src') == 'assets/hair.png') {
             $ball.remove();
             game.score++;
             $('#score span').text(game.score);
@@ -134,29 +158,34 @@ game.checkPosition = (index) => {
                 trump.attr('src', 'assets/trump.png');
             }, 500);
             
-        } else if (ballPositionY > 550){
+        } else if (ballPositionY > trumpPositionY - 50 // 550 - 580 
+            && ballPositionY < trumpPositionY - 20
+            && trumpPositionX == ballPositionX 
+            && $ball.attr('src') == 'assets/hilaryfixed.png') {
             game.lives--;
             $('#lives span').text(game.lives);
             $ball.remove();
             clearInterval(stopCheck);
+            trump.attr('src', 'assets/trump-angry.png');
+            setTimeout(()=>{
+                trump.attr('src', 'assets/trump.png');
+            }, 500);
             if (game.lives === 0) {
                 clearInterval(stopCheck);
-                if (alert('game over! play again?')) {
-                } else {
-                    window.location.reload()
-                } 
+                if (alert('game over! play again?')){} else {window.location.reload()} 
             }
         }
-    }, 100);
+    }, 50);
 }
 
 game.init = () => {
     game.moveTrump();
+    game.startTimer();
     for (let i = 0; i < game.numberOfBalls; i++) {
         setTimeout(()=>{
             game.displayBall(i);
             game.moveBall(i);
-        }, Math.random()*20000);
+        }, Math.random()*game.time);
     }  
 }
 
@@ -164,7 +193,9 @@ $(function() {
     console.log("ready!");
     game.getScreenWidth();
     game.responsiveResize();
+    game.loadingScreen();
     $('#start').on('click', function(){
+        $('.stage').children().toggle(true);
         $('#score span').text(game.score);
         $('#lives span').text(game.lives);
         $('#start').remove();

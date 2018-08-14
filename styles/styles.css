@@ -1,6 +1,7 @@
 .stage { 
     /* width: 300px; */
     min-width: 300px;
+    max-width: 600px;
     margin: 0 auto;
     height: 600px;
     border: 1px solid black;
