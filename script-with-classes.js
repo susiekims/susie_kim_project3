@@ -3,13 +3,19 @@ const game = {};
 
 // declare score, update score dynamically 
 game.score = 0;
-game.lives = 3;
+game.lives = 10;
 game.speed = 2000;
 game.numberOfBalls = 20;
 
+game.getScreenWidth = () => {
+    const stageWidth = $(window).width() / 2;
+    $('.stage').css('width', stageWidth);
+}
+
+
 game.responsiveResize = () => {
-    $('.stage').css('width', '50vw');
-    game.stageWidth = $('.stage').width()
+    // $('.stage').css('width', '50vw');
+    // game.stageWidth = $('.stage').width()
     game.interval = $('.stage').width() / 3;
     $('#trump').css({
         'width': game.interval,
@@ -22,10 +28,11 @@ game.responsiveResize = () => {
 // function to move player left and right
 game.moveTrump = () => {
     const trump = $('#trump');
-    let trumpPositionX = game.interval;
+    let trumpPositionX = trump.position().left;
+
     // using arrow keys
     $("body").keydown(function(e){
-        console.log(trumpPositionX);
+        console.log(game.interval);
         if ((e.keyCode || e.which)  == 37 && trumpPositionX > 0)  {
             // if left key is pressed, move 100px to the left  
             // trump.animate({
@@ -39,7 +46,7 @@ game.moveTrump = () => {
         }
 
         if ((e.keyCode || e.which) == 39 && trumpPositionX < game.interval * 2) {
-            console.log(trumpPositionX);
+            console.log(game.interval);
             // if right key is pressed, move 100px to the right
             // trump.animate({
             //     left: "+=33.3333%"
@@ -77,6 +84,11 @@ game.displayBall = (index) => {
     const $ball = $(`#ball${index}`);
     const ballHTML = `<img src="assets/hair.png" class="ball" id="ball${index}">`;
     $('.stage').append(ballHTML);
+    $('.ball').css({
+        // 'left': ( Math.floor(Math.random() * 3) )*game.interval,
+        'width': game.interval,
+        // 'background-color': 'red'
+    });
 }
 
 // add a div called ball to the stage
@@ -84,7 +96,7 @@ game.displayBall = (index) => {
 // animate the ball so it falls to the bottom of the page;
 game.moveBall = (index) => {
     const $ball = $(`#ball${index}`);
-    $ball.css('left', (Math.floor(Math.random() * 3))*game.interval);
+    $ball.css('left', (Math.floor(Math.random() * 3))*game.interval );
     $ball.animate({
         top: "+=700px"
       }, game.speed);
@@ -111,8 +123,8 @@ game.checkPosition = (index) => {
      
         if (ballPositionY > trumpPositionY - 50 // 550 - 580 
             && ballPositionY < trumpPositionY - 20
-            && trumpPositionX < ballPositionX + 10
-            && trumpPositionX > ballPositionX - 10) {
+            // && trumpPositionX < ballPositionX + 10
+            && trumpPositionX == ballPositionX ) {
             $ball.remove();
             game.score++;
             $('#score span').text(game.score);
@@ -120,7 +132,7 @@ game.checkPosition = (index) => {
             trump.attr('src', 'assets/trumpsmile.png');
             setTimeout(()=>{
                 trump.attr('src', 'assets/trump.png');
-            }, 300);
+            }, 500);
             
         } else if (ballPositionY > 550){
             game.lives--;
@@ -150,6 +162,7 @@ game.init = () => {
 
 $(function() {
     console.log("ready!");
+    game.getScreenWidth();
     game.responsiveResize();
     $('#start').on('click', function(){
         $('#score span').text(game.score);
