@@ -5,8 +5,8 @@ const game = {};
 game.score = 0;
 game.lives = 3;
 game.speed = 2000;
-game.time = 30000;
-game.numberOfBalls = 50;
+game.time = 20000;
+game.numberOfBalls = game.time / 1000;
 game.ballTypes = [
     'assets/hair.png',
     'assets/hilaryfixed.png'
@@ -19,10 +19,6 @@ game.getScreenWidth = () => {
     $('.stage').css('width', stageWidth);
 }
 
-game.loadingScreen = () => {
-    $('.stage').children('div', 'img').toggle(false);
-}
-
 game.startTimer = () => {
     $('#timer').text(game.time /1000 + ':00');
     const timer = setInterval(function () {
@@ -30,7 +26,12 @@ game.startTimer = () => {
         $('#timer').text(game.time /1000 + ':00');
         if (game.time == 0) {
             clearInterval(timer);
-            if (alert(`times up! your score is ${game.score} play again?`)){} else {window.location.reload()} 
+            console.log(game.score);
+            $('#score').text(game.score);
+            $('#finish-screen').toggle(true);
+            $('#replay').on('click', function(){
+                window.location.reload();
+            });
         } 
     }, 1000);
 }
@@ -50,12 +51,15 @@ game.responsiveResize = () => {
 // function to move player left and right
 game.moveTrump = () => {
     const trump = $('#trump');
-    let trumpPositionX = trump.position().left;
+    // let trumpPositionX = trump.position().left;
+     let trumpPositionX = game.interval;
+
 
     // using arrow keys
     $("body").keydown(function(e){
-        console.log(game.interval);
+        // console.log(game.interval);
         if ((e.keyCode || e.which)  == 37 && trumpPositionX > 0)  {
+            console.log(trumpPositionX);
             // if left key is pressed, move 100px to the left  
             // trump.animate({
             //     left: "-=33.3333%"
@@ -63,19 +67,23 @@ game.moveTrump = () => {
             trumpPositionX -= game.interval;
             trump.css('left', trumpPositionX);
         } else if ((e.keyCode || e.which) == 37 && trumpPositionX == 0) {
+            console.log(trumpPositionX);
             trumpPositionX = 0;
             trump.css('left', trumpPositionX);
         }
 
         if ((e.keyCode || e.which) == 39 && trumpPositionX < game.interval * 2) {
-            console.log(game.interval);
+            // console.log(game.interval);
+            console.log(trumpPositionX);
             // if right key is pressed, move 100px to the right
             // trump.animate({
             //     left: "+=33.3333%"
             // }, 200);
             trumpPositionX += game.interval;
             trump.css('left', trumpPositionX);
+
         } else if ((e.keyCode || e.which) == 39 && trumpPositionX == game.interval * 2) {
+            console.log('ouch!');
             trumpPositionX = game.interval * 2;
             trump.css('left', trumpPositionX);
         }
@@ -118,7 +126,7 @@ game.displayBall = (index) => {
 // give it a random x position
 // animate the ball so it falls to the bottom of the page;
 game.moveBall = (index) => {
-    console.log( $('.ball').attr('src'));
+    // console.log( $('.ball').attr('src'));
     const $ball = $(`#ball${index}`);
     $ball.css('left', (Math.floor(Math.random() * 3))*game.interval );
     $ball.animate({
@@ -193,9 +201,10 @@ $(function() {
     console.log("ready!");
     game.getScreenWidth();
     game.responsiveResize();
-    game.loadingScreen();
+    $('#loading-screen').toggle(true);
+    $('#finish-screen').toggle(false);
     $('#start').on('click', function(){
-        $('.stage').children().toggle(true);
+        $('#loading-screen').toggle(false);
         $('#score span').text(game.score);
         $('#lives span').text(game.lives);
         $('#start').remove();

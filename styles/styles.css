@@ -21,11 +21,28 @@
 }
 
 button {
-    position: absolute;
     font-size: 30px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%)
+    margin: 0 auto;
+    display: block;
+}
+
+.loading-trump {
+    display: block;
+    margin: 30px auto;
+    /* position: absolute; */
+    animation: nod 1s ease infinite;
+}
+
+@keyframes nod {
+    0% {
+        transform: rotate(-10deg);
+    }
+    50% {
+        transform: rotate(10deg);
+    }
+    100% {
+        transform: rotate(-10deg);
+    }
 }
 
 #score {
@@ -53,4 +70,40 @@ button {
 
 .arrow {
     display: inline-block;
+}
+
+.loading-screen {
+    padding: 20px;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: black;
+    z-index: 1;
+    color: white;
+}
+
+.finish-screen {
+    padding: 20px;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: black;
+    z-index: 2;
+    color: white;
+}
+
+.timer {
+    opacity: .5;
+    color: red;
+    font-size: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
