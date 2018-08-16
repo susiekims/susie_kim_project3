@@ -161,8 +161,7 @@ body {
   text-align: center; }
   .loading-screen h1 {
     font-size: 10rem;
-    line-height: 0.7;
-    text-shadow: 0px 5px 10px rgba(0, 0, 0, 0.8); }
+    line-height: 0.7; }
   .loading-screen .title {
     margin-top: 70px; }
   .loading-screen .banner {
@@ -172,10 +171,10 @@ body {
     -webkit-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
     transform: translateX(-50%);
-    bottom: 70px; }
+    bottom: 100px; }
   .loading-screen h2 {
     position: absolute;
-    bottom: 100px;
+    bottom: 130px;
     left: 50%;
     -webkit-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
@@ -187,18 +186,69 @@ body {
     top: 35%;
     display: inline-block;
     position: absolute;
-    cursor: pointer; }
+    -webkit-transition: all .2s;
+    -o-transition: all .2s;
+    transition: all .2s;
+    cursor: pointer;
+    -webkit-filter: grayscale(100%) contrast(130%);
+    filter: grayscale(100%) contrast(130%); }
   .loading-screen .head:hover {
-    -webkit-transform: scale(1.2);
-    -ms-transform: scale(1.2);
-    transform: scale(1.2);
-    z-index: 1; }
+    z-index: 1;
+    -webkit-filter: grayscale(0%) contrast(130%);
+    filter: grayscale(0%) contrast(130%); }
+  .loading-screen .hilary-head:hover {
+    -webkit-transform: scale(1.2) translateX(60px);
+    -ms-transform: scale(1.2) translateX(60px);
+    transform: scale(1.2) translateX(60px); }
+  .loading-screen .trump-head:hover {
+    -webkit-transform: scale(1.2) translateX(-60px);
+    -ms-transform: scale(1.2) translateX(-60px);
+    transform: scale(1.2) translateX(-60px); }
   .loading-screen .trump-head {
     width: 200px;
     right: 10px; }
   .loading-screen .hilary-head {
     width: 180px;
     left: 10px; }
+  .loading-screen .name {
+    font-size: 5rem;
+    position: absolute;
+    bottom: 50px;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%); }
+  .loading-screen .hilary-head:hover ~ .hilary-name {
+    left: 50%; }
+  .loading-screen .trump-head:hover ~ .trump-name {
+    left: 50%; }
+  .loading-screen .hilary-name {
+    left: -100px;
+    -webkit-transition: left .5s ease;
+    -o-transition: left .5s ease;
+    transition: left .5s ease; }
+  .loading-screen .trump-name {
+    left: 200%;
+    -webkit-transition: left .5s ease;
+    -o-transition: left .5s ease;
+    transition: left .5s ease; }
+  .loading-screen .slogan {
+    position: absolute;
+    top: -100%;
+    font-size: 1.5rem;
+    font-weight: 600;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    left: 50%;
+    width: 100%;
+    -webkit-transition: top .5s;
+    -o-transition: top .5s;
+    transition: top .5s;
+    letter-spacing: .5rem; }
+  .loading-screen .trump-head:hover ~ .trump-slogan {
+    top: 70px; }
+  .loading-screen .hilary-head:hover ~ .hilary-slogan {
+    top: 70px; }
 
 .stage {
   /* width: 300px; */

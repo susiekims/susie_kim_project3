@@ -2,10 +2,11 @@
 const game = {};
 
 // declare score, update score dynamically 
+
 game.score = 0;
 game.lives = 3;
 game.speed = 2000;
-game.time = 5000;
+game.time = 10000;
 game.numberOfBalls = game.time / 1000;
 game.ballTypes = [
     'assets/hair.png',
@@ -41,7 +42,7 @@ game.responsiveResize = () => {
     // $('.stage').css('width', '50vw');
     // game.stageWidth = $('.stage').width()
     game.interval = $('.stage').width() / 3;
-    $('#trump').css({
+    $('#player').css({
         'width': game.interval,
         'bottom': 10,
         'left': game.interval,
@@ -50,63 +51,63 @@ game.responsiveResize = () => {
 }
 
 // function to move player left and right
-game.moveTrump = () => {
-    const trump = $('#trump');
+game.movePlayer = () => {
+    const player = $('#player');
     // let trumpPositionX = trump.position().left;
-     let trumpPositionX = game.interval;
+     let playerPositionX = game.interval;
 
 
     // using arrow keys
     $("body").keydown(function(e){
         // console.log(game.interval);
-        if ((e.keyCode || e.which)  == 37 && trumpPositionX > 0)  {
-            console.log(trumpPositionX);
+        if ((e.keyCode || e.which)  == 37 && playerPositionX > 0)  {
+            console.log(playerPositionX);
             // if left key is pressed, move 100px to the left  
             // trump.animate({
             //     left: "-=33.3333%"
             // }, 200);
-            trumpPositionX -= game.interval;
-            trump.css('left', trumpPositionX);
-        } else if ((e.keyCode || e.which) == 37 && trumpPositionX == 0) {
-            console.log(trumpPositionX);
-            trumpPositionX = 0;
-            trump.css('left', trumpPositionX);
+            playerPositionX -= game.interval;
+            player.css('left', playerPositionX);
+        } else if ((e.keyCode || e.which) == 37 && playerPositionX == 0) {
+            console.log(playerPositionX);
+            playerPositionX = 0;
+            player.css('left', playerPositionX);
         }
 
-        if ((e.keyCode || e.which) == 39 && trumpPositionX < game.interval * 2) {
+        if ((e.keyCode || e.which) == 39 && playerPositionX < game.interval * 2) {
             // console.log(game.interval);
-            console.log(trumpPositionX);
+            console.log(playerPositionX);
             // if right key is pressed, move 100px to the right
             // trump.animate({
             //     left: "+=33.3333%"
             // }, 200);
-            trumpPositionX += game.interval;
-            trump.css('left', trumpPositionX);
+            playerPositionX += game.interval;
+            player.css('left', playerPositionX);
 
-        } else if ((e.keyCode || e.which) == 39 && trumpPositionX == game.interval * 2) {
+        } else if ((e.keyCode || e.which) == 39 && playerPositionX == game.interval * 2) {
             console.log('ouch!');
-            trumpPositionX = game.interval * 2;
-            trump.css('left', trumpPositionX);
+            playerPositionX = game.interval * 2;
+            player.css('left', playerPositionX);
         }
     });  
 
     // using mouse
     $('#left').on('click', function() {
-        if (trumpPositionX > 0)  {
-            trumpPositionX -= game.interval;
-            trump.css('left', trumpPositionX);
-        } else if (trumpPositionX == 0) {
-            trumpPositionX = 0;
-            trump.css('left', trumpPositionX);
+        if (playerPositionX > 0)  {
+            playerPositionX -= game.interval;
+            player.css('left', playerPositionX);
+        } else if (playerPositionX == 0) {
+            playerPositionX = 0;
+            player.css('left', playerPositionX);
         }
     });
     $('#right').on('click', function() {
-        if (trumpPositionX < game.interval * 2) {
-            trumpPositionX += game.interval;
-            trump.css('left', trumpPositionX);
-        } else if (trumpPositionX == game.interval * 2) {
-            trumpPositionX = 200;
-            trump.css('left', trumpPositionX);
+        if (playerPositionX < game.interval * 2) {
+            playerPositionX += game.interval;
+            player.css('left', playerPositionX);
+        } else if (playerPositionX == game.interval * 2) {
+            playerPositionX = 200;
+            player.css('left', playerPositionX);
         }
     });
 }
@@ -131,7 +132,7 @@ game.moveBall = (index) => {
     const $ball = $(`#ball${index}`);
     $ball.css('left', (Math.floor(Math.random() * 3))*game.interval );
     $ball.animate({
-        top: "+=700px"
+        top: `+=${$('.stage').height() + game.interval}`
       }, game.speed);
     game.checkPosition(index);
 
@@ -148,34 +149,34 @@ game.checkPosition = (index) => {
         const ballPositionY = $ball.position().top;
         const ballPositionX = $ball.position().left;
 
-        const trump = $("#trump");
-        const trumpPositionY = trump.position().top;
-        const trumpPositionX = trump.position().left;
+        const player = $("#player");
+        const playerPositionY = player.position().top;
+        const playerPositionX = player.position().left;
         // console.log(trumpPositionX);
         // console.log(boxPositionX, ballPositionX);
      
-        if (ballPositionY > trumpPositionY - 50 // 550 - 580 
-            && ballPositionY < trumpPositionY - 20
-            && trumpPositionX == ballPositionX 
+        if (ballPositionY > playerPositionY - 50 // 550 - 580 
+            && ballPositionY < playerPositionY - 20
+            && playerPositionX == ballPositionX 
             && $ball.attr('src') == 'assets/hair.png') {
             $ball.remove();
             game.score++;
             $('#score span').text(game.score);
             clearInterval(stopCheck);
-            trump.attr('src', 'assets/trumpsmile.png');
+            player.attr('src', 'assets/trumpsmile.png');
             setTimeout(()=>{
-                trump.attr('src', 'assets/trump.png');
+                player.attr('src', 'assets/trump.png');
             }, 500);
             
-        } else if (ballPositionY > trumpPositionY - 50 // 550 - 580 
-            && ballPositionY < trumpPositionY - 20
-            && trumpPositionX == ballPositionX 
+        } else if (ballPositionY > playerPositionY - 50 // 550 - 580 
+            && ballPositionY < playerPositionY - 20
+            && playerPositionX == ballPositionX 
             && $ball.attr('src') == 'assets/hilaryfixed.png') {
             game.lives--;
             $('#lives span').text(game.lives);
             $ball.remove();
             clearInterval(stopCheck);
-            trump.attr('src', 'assets/trump-angry.png');
+            player.attr('src', 'assets/trump-angry.png');
             setTimeout(()=>{
                 trump.attr('src', 'assets/trump.png');
             }, 500);
@@ -188,8 +189,12 @@ game.checkPosition = (index) => {
 }
 
 game.init = () => {
-    game.moveTrump();
+    $('#loading-screen').toggle(false);
+    $('#score span').text(game.score);
+    $('#lives span').text(game.lives);
+    $('#start').remove();
     game.startTimer();
+    game.movePlayer();
     for (let i = 0; i < game.numberOfBalls; i++) {
         setTimeout(()=>{
             game.displayBall(i);
@@ -204,11 +209,12 @@ $(function() {
     game.responsiveResize();
     $('#loading-screen').toggle(true);
     $('#finish-screen').toggle(false);
-    $('#start').on('click', function(){
-        $('#loading-screen').toggle(false);
-        $('#score span').text(game.score);
-        $('#lives span').text(game.lives);
-        $('#start').remove();
+    $('.trump-head').on('click', function(){
+        $('#player').attr('src', 'assets/trump.png')
+        game.init();  
+    });
+    $('.hilary-head').on('click', function(){
+        $('#player').attr('src', 'assets/hilaryfixed.png')
         game.init();  
     });
     $(window).resize(function(){
