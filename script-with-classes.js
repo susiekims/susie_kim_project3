@@ -149,7 +149,7 @@ game.moveBall = (index) => {
 // compare y positions of ball and box within 40px
 // if they touch, add 1 to the score and delete the ball
 game.checkPosition = (index) => {
-    const stopCheck = setInterval(function(){
+    const check = setInterval(function(){
         const $ball = $(`#ball${index}`);
         const ballPositionY = $ball.position().top;
         const ballPositionX = $ball.position().left;
@@ -186,9 +186,12 @@ game.checkPosition = (index) => {
                 player.attr('src', `assets/${game.player}`);
             }, 500);
             if (game.lives === 0) {
-                clearInterval(stopCheck);
+                clearInterval(check);
                 if (alert('game over! play again?')){} else {window.location.reload()} 
             }
+        } else if (ballPositionY > $('.stage').height()) {
+            clearInterval(check);
+            $ball.remove();
         }
     }, 100);
 }
@@ -233,5 +236,10 @@ $(function() {
     $(window).resize(function(){
         game.responsiveResize();
     });
+}
+
+$(function() {
+    console.log("ready!");
+    game.init();
 });
 
