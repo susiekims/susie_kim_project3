@@ -5,7 +5,7 @@ const game = {};
 game.score = 0;
 game.lives = 3;
 game.speed = 2000;
-game.time = 20000;
+game.time = 5000;
 game.numberOfBalls = game.time / 1000;
 game.ballTypes = [
     'assets/hair.png',
@@ -14,10 +14,10 @@ game.ballTypes = [
 
 let randomNum = Math.floor(Math.random() * 2);
 
-game.getScreenWidth = () => {
-    const stageWidth = $(window).width() / 2;
-    $('.stage').css('width', stageWidth);
-}
+// game.getScreenWidth = () => {
+//     const stageWidth = $(window).width() / 2;
+//     $('.stage').css('width', stageWidth);
+// }
 
 game.startTimer = () => {
     $('#timer').text(game.time /1000 + ':00');
@@ -27,10 +27,11 @@ game.startTimer = () => {
         if (game.time == 0) {
             clearInterval(timer);
             console.log(game.score);
-            $('#score').text(game.score);
+            $('#score-final').text(game.score);
             $('#finish-screen').toggle(true);
             $('#replay').on('click', function(){
                 window.location.reload();
+                console.log('clickled');
             });
         } 
     }, 1000);
@@ -42,7 +43,7 @@ game.responsiveResize = () => {
     game.interval = $('.stage').width() / 3;
     $('#trump').css({
         'width': game.interval,
-        'bottom': 0,
+        'bottom': 10,
         'left': game.interval,
         'position': 'absolute',
     });
@@ -199,7 +200,7 @@ game.init = () => {
 
 $(function() {
     console.log("ready!");
-    game.getScreenWidth();
+    // game.getScreenWidth();
     game.responsiveResize();
     $('#loading-screen').toggle(true);
     $('#finish-screen').toggle(false);

@@ -7,6 +7,7 @@
     <title>Game</title>
     <link rel="stylesheet" href="styles/styles.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:600,900" rel="stylesheet"> 
 </head>
 <body>
     <section class="stage">
@@ -14,22 +15,28 @@
         <div id="score">Score: <span></span></div>
         <div id="lives">Lives: <span></span></div>
         <img id="trump" src="assets/trump.png">
+
+
         <div id="loading-screen" class="loading-screen">
-            <h1>Trump Dump!</h1>
-            <h3>Catch as many toupes as you can! But dodge the Hilary's before she runs you out of the oval office!</h3>
-            <h3>You have 30 seconds.</h3>
-            <img src="assets/trumpsmile.png" class="loading-trump">
-            <button id='start'>Start</button>
+            <div class="title">
+                <h1 class="title-trump">Trump</h1>
+                <h1 class="title-dump">Dump</h1>
+            </div>
+            <img src="assets/banner.svg" class="banner" alt="">
+            <img src="assets/hilary-loader.png" class="head hilary-head">
+            <img src="assets/trump-loader.png" class="head trump-head">
+            <h2>Choose your player</h2>
+            <!-- <button id='start'>Start</button> -->
         </div>
+
+
+        <div id="left"></div>
+        <div id="right"></div>
         <div id="finish-screen" class="finish-screen">
             <h1>Times up!</h1>
-            <h3>Your score is <span id="score"></span></h3>
+            <h3>Your score is <span id="score-final"></span></h3>
             <button id='replay'>Replay</button>
         </div>
-    </section>
-    <section class="arrows">
-        <div id="left" class="arrow"><i class="fas fa-chevron-circle-left"></i></div>
-        <div id="right" class="arrow"><i class="fas fa-chevron-circle-right"></i></div>
     </section>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="script-with-classes.js"></script>
