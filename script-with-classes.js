@@ -6,12 +6,17 @@ const game = {};
 game.score = 0;
 game.lives = 3;
 game.speed = 2000;
-game.time = 10000;
+game.time = 30000;
 game.numberOfBalls = game.time / 1000;
 game.ballTypes = [
-    'assets/hair.png',
-    'assets/hilaryfixed.png'
+    `assets/hair.png`,
+    `assets/hilaryfixed.png`
 ];
+game.catch = 'hair.png';
+game.dodge = 'hilaryfixed.png';
+game.player = 'trump.png';
+game.playerSmile = 'trump-smile.png';
+game.playerAngry = 'trump-angry.png';
 
 let randomNum = Math.floor(Math.random() * 2);
 
@@ -158,41 +163,40 @@ game.checkPosition = (index) => {
         if (ballPositionY > playerPositionY - 50 // 550 - 580 
             && ballPositionY < playerPositionY - 20
             && playerPositionX == ballPositionX 
-            && $ball.attr('src') == 'assets/hair.png') {
+            && $ball.attr('src') == `assets/${game.catch}`) {
             $ball.remove();
             game.score++;
             $('#score span').text(game.score);
             clearInterval(stopCheck);
-            player.attr('src', 'assets/trumpsmile.png');
+            player.attr('src', `assets/${game.playerSmile}`);
             setTimeout(()=>{
-                player.attr('src', 'assets/trump.png');
+                player.attr('src', `assets/${game.player}`);
             }, 500);
             
         } else if (ballPositionY > playerPositionY - 50 // 550 - 580 
             && ballPositionY < playerPositionY - 20
             && playerPositionX == ballPositionX 
-            && $ball.attr('src') == 'assets/hilaryfixed.png') {
+            && $ball.attr('src') == `assets/${game.dodge}`) {
             game.lives--;
             $('#lives span').text(game.lives);
             $ball.remove();
             clearInterval(stopCheck);
-            player.attr('src', 'assets/trump-angry.png');
+            player.attr('src', `assets/${game.playerAngry}`);
             setTimeout(()=>{
-                trump.attr('src', 'assets/trump.png');
+                player.attr('src', `assets/${game.player}`);
             }, 500);
             if (game.lives === 0) {
                 clearInterval(stopCheck);
                 if (alert('game over! play again?')){} else {window.location.reload()} 
             }
         }
-    }, 50);
+    }, 100);
 }
 
 game.init = () => {
     $('#loading-screen').toggle(false);
     $('#score span').text(game.score);
     $('#lives span').text(game.lives);
-    $('#start').remove();
     game.startTimer();
     game.movePlayer();
     for (let i = 0; i < game.numberOfBalls; i++) {
@@ -214,7 +218,16 @@ $(function() {
         game.init();  
     });
     $('.hilary-head').on('click', function(){
-        $('#player').attr('src', 'assets/hilaryfixed.png')
+        $('#player').attr('src', 'assets/hilaryfixed.png');
+        game.ballTypes = [
+            `assets/email.png`,
+            `assets/trump.png`
+        ];
+        game.player = 'hilaryfixed.png';
+        game.catch = 'email.png';
+        game.dodge = 'trump.png';
+        game.playerSmile = 'hilary-smile.png';
+        game.playerAngry = 'hilary-sad.png';   
         game.init();  
     });
     $(window).resize(function(){

@@ -6,11 +6,10 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient($primary, #0a153a);
     z-index: 3;
-    color: white; 
     text-transform: uppercase;
     text-align: center;
+    background: radial-gradient($primary, #0a153a);
 
     h1 {
         font-size: 10rem;
@@ -56,6 +55,7 @@
 
     .hilary-head:hover {
         transform: scale(1.2) translateX(60px);
+        // animation-fill-mode: backwards;
     }
 
     .trump-head:hover {
@@ -72,12 +72,26 @@
 
     .trump-head {
         width: 200px;
-        right: 10px;
+        right: -200px;
+        animation: trump-entrance 1s .5s ease;
+        animation-fill-mode: forwards;
     }
 
     .hilary-head {
         width: 180px;
-        left: 10px
+        animation: hilary-entrance 1s .5s ease;
+        left: -200px;
+        animation-fill-mode: forwards;
+    }
+
+    @keyframes hilary-entrance {
+        0% {left: -200px}
+        100% {left: 10px}
+    }
+
+    @keyframes trump-entrance {
+        0% {right: -200px}
+        100% {right: 10px}
     }
 
     .name {
