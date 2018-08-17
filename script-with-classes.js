@@ -276,6 +276,7 @@ game.badScoreText = `Do you think this is a game? This won't do. I guess this is
     });
 }
 
+<<<<<<< HEAD
 // $(function() {
 //     console.log("ready!");
 //     game.init();
@@ -285,6 +286,8 @@ game.badScoreText = `Do you think this is a game? This won't do. I guess this is
 //     });
 // )};
 
+=======
+>>>>>>> device test
 $(function() {
     console.log("ready!");
     game.init();
