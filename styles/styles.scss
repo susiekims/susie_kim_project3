@@ -50,25 +50,19 @@ button {
     font-size: 30px;
     padding: 10px;
     top: 0;
-    right: 0; }
+    right: 0; 
+
+}
 
 #lives {
-    position: absolute;
-    font-size: 30px;
     padding: 10px;
-    top: 0;
-    left: 0; }
+    display: inline-block;
+}
 
-.arrows {
-    font-size: 30px;
-    position: absolute;
-    left: 50%;
-    -webkit-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    transform: translateX(-50%); }
-
-.arrow {
-    display: inline-block; }
+#lives img {
+    width: 50px;
+    display: inline-block;
+}
 
 .finish-screen {
     padding-top: 100px;

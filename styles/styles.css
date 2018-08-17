@@ -172,11 +172,11 @@ body {
     -webkit-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
     transform: translateX(-50%);
-    bottom: 100px; }
+    bottom: 12%; }
   .loading-screen h2 {
     font-size: 1.2rem;
     position: absolute;
-    bottom: 130px;
+    bottom: 17%;
     left: 50%;
     -webkit-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
@@ -185,7 +185,7 @@ body {
     letter-spacing: 0.3rem;
     width: 100%; }
   .loading-screen .head {
-    top: 32%;
+    top: 35%;
     display: inline-block;
     position: absolute;
     -webkit-transition: all .2s;
@@ -269,7 +269,7 @@ body {
   .loading-screen .name {
     font-size: 5rem;
     position: absolute;
-    bottom: 50px;
+    bottom: 3%;
     -webkit-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
     transform: translateX(-50%); }
@@ -354,21 +354,11 @@ button {
   right: 0; }
 
 #lives {
-  position: absolute;
-  font-size: 30px;
   padding: 10px;
-  top: 0;
-  left: 0; }
+  display: inline-block; }
 
-.arrows {
-  font-size: 30px;
-  position: absolute;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
-  transform: translateX(-50%); }
-
-.arrow {
+#lives img {
+  width: 50px;
   display: inline-block; }
 
 .finish-screen {
@@ -393,7 +383,7 @@ button {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%); }
 
-@media (max-width: 350px) {
+@media (max-width: 367px) {
   @-webkit-keyframes hilary-entrance {
     0% {
       left: -200px; }

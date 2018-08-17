@@ -17,6 +17,7 @@ game.dodge = 'hilaryfixed.png';
 game.player = 'trump.png';
 game.playerSmile = 'trump-smile.png';
 game.playerAngry = 'trump-angry.png';
+game.numberOfLives = 5;
 
 let randomNum = Math.floor(Math.random() * 2);
 
@@ -189,7 +190,8 @@ game.checkPosition = (index) => {
             && playerPositionX == ballPositionX 
             && $ball.attr('src') == `assets/${game.dodge}`) {
             game.lives--;
-            $('#lives span').text(game.lives);
+            // $('#lives span').text(game.lives);
+            game.showLives(game.lives);
             $ball.remove();
             clearInterval(stopCheck);
             player.attr('src', `assets/${game.playerAngry}`);
@@ -204,13 +206,21 @@ game.checkPosition = (index) => {
     }, 100);
 }
 
+game.showLives = (numberOfLives) => {
+    $('#lives').empty();
+    for (let i = 0; i < numberOfLives; i++) {
+        $('#lives').append(`<img src='assets/${game.player}'>`);
+    }
+}
+
 game.playGame = () => {
     $('#game-items').toggle(true);
     $('#loading-screen').toggle(false);
-    $('#score span').text(game.score);
+    // $('#score span').text(game.score);
     $('#lives span').text(game.lives);
     game.startTimer();
     game.movePlayer();
+    game.showLives(game.numberOfLives);
     for (let i = 0; i < game.numberOfBalls; i++) {
         setTimeout(()=>{
             game.displayBall(i);
