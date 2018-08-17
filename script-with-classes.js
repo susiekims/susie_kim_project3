@@ -210,33 +210,6 @@ game.init = () => {
     }  
 }
 
-$(function() {
-    console.log("ready!");
-    // game.getScreenWidth();
-    game.responsiveResize();
-    $('#loading-screen').toggle(true);
-    $('#finish-screen').toggle(false);
-    $('.trump-head').on('click', function(){
-        $('#player').attr('src', 'assets/trump.png')
-        game.init();  
-    });
-    $('.hilary-head').on('click', function(){
-        $('#player').attr('src', 'assets/hilaryfixed.png');
-        game.ballTypes = [
-            `assets/email.png`,
-            `assets/trump.png`
-        ];
-        game.player = 'hilaryfixed.png';
-        game.catch = 'email.png';
-        game.dodge = 'trump.png';
-        game.playerSmile = 'hilary-smile.png';
-        game.playerAngry = 'hilary-sad.png';   
-        game.init();  
-    });
-    $(window).resize(function(){
-        game.responsiveResize();
-    });
-}
 
 $(function() {
     console.log("ready!");
