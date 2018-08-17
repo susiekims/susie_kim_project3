@@ -6,8 +6,8 @@ const game = {};
 game.score = 0;
 game.lives = 5;
 game.speed = 2000;
-game.time = 5000;
-game.numberOfBalls = 5;
+game.time = 3000;
+game.numberOfBalls = 30;
 game.ballTypes = [
     `assets/hair.png`,
     `assets/hilaryfixed.png`
@@ -18,7 +18,7 @@ game.player = 'trump.png';
 game.playerSmile = 'trump-smile.png';
 game.playerAngry = 'trump-angry.png';
 game.noLivesText = `Oh no! Hilary told the media that your hair is actually a toupe! Good try, but now you'll have to convince them its FAKE NEWS.`;
-game.goodScoreText = `Nice job! You have toupes for days! You look amazing, Mr, President!`;
+game.goodScoreText = `Nice job! You have toupes for days! You look amazing, Mr. President!`;
 game.badScoreText = `Did you even try? Well, good luck getting a second term with THAT hair...`
 
 let randomNum = Math.floor(Math.random() * 2);

@@ -1,19 +1,27 @@
-.finish-screen {
+#finish-screen {
+    position: relative;
 
-    h1 {
-        font-size: 7rem;
+    .slide-down {
+        // animation: slide-down .5s .5s;
+        position: absolute;
+        top: 300px;
+
+        h1 {
+            font-size: 7rem;
+        }
+    
+        h2 {
+            font-size: 3rem;
+        }
+    
+        h3 {
+            margin: 0 50px;
+            font-size: 2rem;
+        }
     }
 
-    h2 {
-        font-size: 3rem;
-    }
+    // @keyframes slide-down {
 
-    h3 {
-        margin: 0 50px;
-        font-size: 2rem;
-    }
-
-
-
-
+        
+    // }
 }
