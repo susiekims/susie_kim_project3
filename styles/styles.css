@@ -316,22 +316,13 @@ body {
   .loading-screen .hilary-head:hover ~ .hilary-slogan {
     top: 70px; }
 
-#finish-screen {
-  position: relative; }
-  #finish-screen .slide-down {
-    position: absolute;
-    top: 300px; }
-    #finish-screen .slide-down h1 {
-      font-size: 7rem; }
-    #finish-screen .slide-down h2 {
-      font-size: 3rem; }
-    #finish-screen .slide-down h3 {
-      margin: 0 50px;
-      font-size: 2rem; }
-
 .stage {
-  max-width: 400px;
+  /* width: 300px; */
+  background: -webkit-radial-gradient(#2342c7, #0a153a);
+  background: -o-radial-gradient(#2342c7, #0a153a);
+  background: radial-gradient(#2342c7, #0a153a);
   min-width: 300px;
+  max-width: 400px;
   margin: 0 auto;
   height: 100vh;
   display: block;
@@ -364,22 +355,34 @@ body {
   /* background: blue; */
   top: -100px; }
 
+button {
+  font-size: 30px;
+  margin: 0 auto;
+  display: block; }
+
 #score {
+  position: absolute;
   font-size: 30px;
   padding: 10px;
-  margin-right: 10px;
-  float: right; }
+  top: 0;
+  right: 0; }
 
 #lives {
-  float: left;
-  padding: 10px; }
+  position: absolute;
+  font-size: 30px;
+  padding: 10px;
+  top: 0;
+  left: 0; }
 
-#lives img {
-  float: left;
-  width: 40px; }
+.arrows {
+  font-size: 30px;
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%); }
 
-#counter {
-  width: 50px;
+.arrow {
   display: inline-block; }
 
 .finish-screen {
@@ -391,7 +394,10 @@ body {
   right: 0;
   bottom: 0;
   z-index: 3;
-  color: white; }
+  color: white;
+  background: -webkit-radial-gradient(#2342c7, #0a153a);
+  background: -o-radial-gradient(#2342c7, #0a153a);
+  background: radial-gradient(#2342c7, #0a153a); }
 
 .timer {
   opacity: .5;
