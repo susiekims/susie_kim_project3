@@ -2,6 +2,7 @@
 @import 'partials/_utils.scss';
 @import 'partials/_general-styles';
 @import 'partials/_loading-screen.scss';
+@import 'partials/_finish-screen.scss';
 
 .stage {
     max-width: 400px;
@@ -46,20 +47,29 @@ button {
 }
 
 #score {
-    position: absolute;
+    // position: absolute;
     font-size: 30px;
     padding: 10px;
-    top: 0;
-    right: 0; 
+    // top: 0;
+    margin-right: 10px;    
+    float: right;
+    // right: 0; 
 
 }
 
 #lives {
+    float: left;
     padding: 10px;
-    display: inline-block;
+    // display: inline-block;
 }
 
 #lives img {
+    float: left;
+    width: 40px;
+    // display: inline-block;
+}
+
+#counter {
     width: 50px;
     display: inline-block;
 }

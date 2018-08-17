@@ -149,6 +149,16 @@ body {
   background: radial-gradient(#2342c7, #0a153a);
   text-transform: uppercase; }
 
+#replay {
+  background: darkred;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 1.2rem;
+  letter-spacing: .5rem;
+  padding: 10px 20px;
+  margin: 20px auto; }
+
 .loading-screen {
   padding: 20px;
   text-align: center;
@@ -306,6 +316,16 @@ body {
   .loading-screen .hilary-head:hover ~ .hilary-slogan {
     top: 70px; }
 
+.finish-screen h1 {
+  font-size: 7rem; }
+
+.finish-screen h2 {
+  font-size: 3rem; }
+
+.finish-screen h3 {
+  margin: 0 50px;
+  font-size: 2rem; }
+
 .stage {
   max-width: 400px;
   min-width: 300px;
@@ -347,17 +367,20 @@ button {
   display: block; }
 
 #score {
-  position: absolute;
   font-size: 30px;
   padding: 10px;
-  top: 0;
-  right: 0; }
+  margin-right: 10px;
+  float: right; }
 
 #lives {
-  padding: 10px;
-  display: inline-block; }
+  float: left;
+  padding: 10px; }
 
 #lives img {
+  float: left;
+  width: 40px; }
+
+#counter {
   width: 50px;
   display: inline-block; }
 

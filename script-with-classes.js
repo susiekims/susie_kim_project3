@@ -4,10 +4,10 @@ const game = {};
 // declare score, update score dynamically 
 
 game.score = 0;
-game.lives = 3;
+game.lives = 5;
 game.speed = 2000;
-game.time = 30000;
-game.numberOfBalls = game.time / 1000;
+game.time = 5000;
+game.numberOfBalls = 5;
 game.ballTypes = [
     `assets/hair.png`,
     `assets/hilaryfixed.png`
@@ -17,7 +17,9 @@ game.dodge = 'hilaryfixed.png';
 game.player = 'trump.png';
 game.playerSmile = 'trump-smile.png';
 game.playerAngry = 'trump-angry.png';
-game.numberOfLives = 5;
+game.noLivesText = `Oh no! Hilary told the media that your hair is actually a toupe! Good try, but now you'll have to convince them its FAKE NEWS.`;
+game.goodScoreText = `Nice job! You have toupes for days! You look amazing, Mr, President!`;
+game.badScoreText = `Did you even try? Well, good luck getting a second term with THAT hair...`
 
 let randomNum = Math.floor(Math.random() * 2);
 
@@ -31,11 +33,20 @@ game.startTimer = () => {
     const timer = setInterval(function () {
         game.time -= 1000;
         $('#timer').text(game.time /1000 + ':00');
-        if (game.time == 0) {
+        if (game.time <= 0) {
             clearInterval(timer);
+            $('#game-items').toggle(false);
+            $('.ball').toggle(false);
             console.log(game.score);
-            $('#score-final').text(game.score);
+
+            if (game.score > 9) {
+                $('#finish-text').text(game.goodScoreText);
+            } else {
+                $('#finish-text').text(game.badScoreText);
+            }
             $('#finish-screen').toggle(true);
+
+            $('#score-final').text(game.score);
             $('#replay').on('click', function(){
                 window.location.reload();
                 console.log('clickled');
@@ -190,7 +201,7 @@ game.checkPosition = (index) => {
             && playerPositionX == ballPositionX 
             && $ball.attr('src') == `assets/${game.dodge}`) {
             game.lives--;
-            // $('#lives span').text(game.lives);
+
             game.showLives(game.lives);
             $ball.remove();
             clearInterval(stopCheck);
@@ -207,6 +218,7 @@ game.checkPosition = (index) => {
 }
 
 game.showLives = (numberOfLives) => {
+    console.log(numberOfLives);
     $('#lives').empty();
     for (let i = 0; i < numberOfLives; i++) {
         $('#lives').append(`<img src='assets/${game.player}'>`);
@@ -214,13 +226,14 @@ game.showLives = (numberOfLives) => {
 }
 
 game.playGame = () => {
+    $('#counter').attr('src', `assets/${game.catch}`);
     $('#game-items').toggle(true);
     $('#loading-screen').toggle(false);
-    // $('#score span').text(game.score);
-    $('#lives span').text(game.lives);
+    $('#score span').text(game.score);
+    // $('#lives span').text(game.lives);
     game.startTimer();
     game.movePlayer();
-    game.showLives(game.numberOfLives);
+    game.showLives(game.lives);
     for (let i = 0; i < game.numberOfBalls; i++) {
         setTimeout(()=>{
             game.displayBall(i);
@@ -250,7 +263,11 @@ game.init = () => {
         game.catch = 'email.png';
         game.dodge = 'trump.png';
         game.playerSmile = 'hilary-smile.png';
-        game.playerAngry = 'hilary-sad.png';   
+        game.playerAngry = 'hilary-sad.png';  
+        game.noLivesText = `Trump called you out on your emails to the media! Now you'll have to distract them with dabbing and memes.`;
+game.goodScoreText = `Great work getting all the emails! I mean.. what emails.. there were never any emails...`;
+game.badScoreText = `Do you think this is a game? This won't do. I guess this is why you lost the election...` 
+        
         game.playGame();  
 
     });

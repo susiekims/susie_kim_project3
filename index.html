@@ -14,7 +14,7 @@
         <div id="game-items">
             <div class="timer" id="timer"></div>
             <div id="lives"></div>
-            <div id="score"> <span></span></div>
+            <div id="score"><img id="counter"> <span></span></div>
             <img id="player" src="assets/trump.png">
         </div>
 
@@ -41,9 +41,13 @@
         <div id="left"></div>
         <div id="right"></div>
         <div id="finish-screen" class="finish-screen">
-            <h1>Times up!</h1>
-            <h3>Your score is <span id="score-final"></span></h3>
-            <button id='replay'>Replay</button>
+            <div class="slide-down">
+                <h1>Times up!</h1>
+                <h2>Your score is <span id="score-final"></span></h2>
+                <h3 id="finish-text"></h3>
+                <button id='replay'>Replay</button>
+            </div>
+            <img class="slide-up">
         </div>
     </section>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
