@@ -336,7 +336,9 @@ body {
   bottom: 0;
   left: 0;
   right: 50%;
-  z-index: 2; }
+  z-index: 2;
+  background: red;
+  opacity: .5; }
 
 #right {
   position: absolute;
@@ -345,7 +347,9 @@ body {
   left: 50%;
   right: 0;
   opacity: 0.2;
-  z-index: 2; }
+  z-index: 2;
+  background: blue;
+  opacity: .5; }
 
 .ball {
   position: absolute;
@@ -393,11 +397,16 @@ button {
   left: 0;
   right: 0;
   bottom: 0;
+<<<<<<< HEAD
   z-index: 3;
   color: white;
   background: -webkit-radial-gradient(#2342c7, #0a153a);
   background: -o-radial-gradient(#2342c7, #0a153a);
   background: radial-gradient(#2342c7, #0a153a); }
+=======
+  z-index: 4;
+  color: white; }
+>>>>>>> master
 
 .timer {
   opacity: .5;

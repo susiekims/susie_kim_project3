@@ -6,7 +6,7 @@ const game = {};
 game.score = 0;
 game.lives = 5;
 game.speed = 2000;
-game.time = 3000;
+game.time = 30000;
 game.numberOfBalls = 30;
 game.ballTypes = [
     `assets/hair.png`,
@@ -254,7 +254,7 @@ game.init = () => {
 
     $('.trump-head').on('click', function(){
         $('#player').attr('src', 'assets/trump.png')
-        game.playGame();  
+        // game.playGame();  
     });
     $('.hilary-head').on('click', function(){
         $('#player').attr('src', 'assets/hilaryfixed.png');
@@ -271,7 +271,7 @@ game.init = () => {
 game.goodScoreText = `Great work getting all the emails! I mean.. what emails.. there were never any emails...`;
 game.badScoreText = `Do you think this is a game? This won't do. I guess this is why you lost the election...` 
         
-        game.playGame();  
+        // game.playGame();  
 
     });
 }

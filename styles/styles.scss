@@ -21,7 +21,9 @@
     bottom: 0;
     left: 0;
     right: 50%;
-    z-index: 2; }
+    z-index: 2; 
+    background: red;
+opacity: .5;}
 
 #right {
     position: absolute;
@@ -30,7 +32,9 @@
     left: 50%;
     right: 0;
     opacity: 0.2;
-    z-index: 2; }
+    z-index: 2; 
+    background: blue;
+    opacity: .5;}
 
 .ball {
     position: absolute;
@@ -76,7 +80,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 3;
+    z-index: 4;
     color: white; 
     // background: radial-gradient($primary, #0a153a);}
 }
