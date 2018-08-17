@@ -9,10 +9,9 @@
     z-index: 3;
     text-transform: uppercase;
     text-align: center;
-    background: radial-gradient($primary, #0a153a);
 
     h1 {
-        font-size: 10rem;
+        font-size: 7rem;
         line-height: 0.7;
         // text-shadow: 0px 5px 10px rgba(0, 0, 0, 0.8);
     }
@@ -30,6 +29,7 @@
     }
 
     h2 {
+        font-size: 1.2rem;
         position: absolute;
         bottom: 130px;
         left: 50%;
@@ -40,26 +40,38 @@
     }
 
     .head {
-        top: 35%;
+        top: 32%;
         display: inline-block;
         position: absolute;
         transition: all .2s;
         cursor: pointer;
-        filter: grayscale(100%) contrast(130%);
+        filter: grayscale(100%);
+    }
+
+    @keyframes glow {
+        0% {
+            filter: grayscale(0%) drop-shadow(0px 0px -5px red);
+        }
+        50% {
+            filter: grayscale(100%) drop-shadow(0px 0px 5px red);
+        }
+        100% {
+            filter: grayscale(0%) drop-shadow(0px 0px -5px red)
+        }
     }
 
     .head:hover {
         z-index: 1;
-        filter: grayscale(0%) contrast(130%);
+        filter: grayscale(0%) contrast(130%) drop-shadow(0px 0px 0px);
     }
 
     .hilary-head:hover {
-        transform: scale(1.2) translateX(60px);
+        transform: scale(1.2) translateX(25%);
         // animation-fill-mode: backwards;
     }
 
     .trump-head:hover {
-        transform: scale(1.2) translateX(-60px);
+        transform: scale(1.2) translateX(-25%);
     }
 
     // .hilary-head:hover ~ .trump-head {
@@ -73,13 +85,13 @@
     .trump-head {
         width: 200px;
         right: -200px;
-        animation: trump-entrance 1s .5s ease;
+        animation: trump-entrance 1s .5s ease; // glow 2s 1s infinite;
         animation-fill-mode: forwards;
     }
 
     .hilary-head {
         width: 180px;
-        animation: hilary-entrance 1s .5s ease;
+        animation: hilary-entrance 1s .5s ease; // glow 2s 2s infinite;
         left: -200px;
         animation-fill-mode: forwards;
     }
@@ -122,7 +134,7 @@
     .slogan {
         position: absolute;
         top: -100%;
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         font-weight: 600;
         transform: translateX(-50%);
         left: 50%;

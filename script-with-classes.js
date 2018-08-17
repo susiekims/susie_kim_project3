@@ -72,12 +72,15 @@ game.movePlayer = () => {
             //     left: "-=33.3333%"
             // }, 200);
             playerPositionX -= game.interval;
-            player.css('left', playerPositionX);
-        } else if ((e.keyCode || e.which) == 37 && playerPositionX == 0) {
-            console.log(playerPositionX);
-            playerPositionX = 0;
-            player.css('left', playerPositionX);
-        }
+            player.animate({
+                left: `-=${game.interval}`
+            }, 200);
+            // player.css('left', playerPositionX);
+        } 
+        // else if ((e.keyCode || e.which) == 37 && playerPositionX == 0) {
+        //     console.log(playerPositionX);
+        //     playerPositionX = 0;
+        // }
 
         if ((e.keyCode || e.which) == 39 && playerPositionX < game.interval * 2) {
             // console.log(game.interval);
@@ -87,33 +90,41 @@ game.movePlayer = () => {
             //     left: "+=33.3333%"
             // }, 200);
             playerPositionX += game.interval;
-            player.css('left', playerPositionX);
-
-        } else if ((e.keyCode || e.which) == 39 && playerPositionX == game.interval * 2) {
-            console.log('ouch!');
-            playerPositionX = game.interval * 2;
-            player.css('left', playerPositionX);
-        }
+            player.animate({
+                left: `+=${game.interval}`
+            }, 200);
+        } 
+        // else if ((e.keyCode || e.which) == 39 && playerPositionX == game.interval * 2) {
+        //     console.log('ouch!');
+        //     playerPositionX = game.interval * 2;
+        //     player.css('left', playerPositionX);
+        // }
     });  
 
     // using mouse
     $('#left').on('click', function() {
         if (playerPositionX > 0)  {
             playerPositionX -= game.interval;
-            player.css('left', playerPositionX);
-        } else if (playerPositionX == 0) {
-            playerPositionX = 0;
-            player.css('left', playerPositionX);
-        }
+            player.animate({
+                left: `-=${game.interval}`
+            }, 200);
+        } 
+        // else if (playerPositionX == 0) {
+        //     playerPositionX = 0;
+        //     player.css('left', playerPositionX);
+        // }
     });
     $('#right').on('click', function() {
         if (playerPositionX < game.interval * 2) {
             playerPositionX += game.interval;
-            player.css('left', playerPositionX);
-        } else if (playerPositionX == game.interval * 2) {
-            playerPositionX = 200;
-            player.css('left', playerPositionX);
-        }
+            player.animate({
+                left: `+=${game.interval}`
+            }, 200);
+        } 
+        // else if (playerPositionX == game.interval * 2) {
+        //     playerPositionX = 200;
+        //     player.css('left', playerPositionX);
+        // }
     });
 }
 
@@ -193,7 +204,8 @@ game.checkPosition = (index) => {
     }, 100);
 }
 
-game.init = () => {
+game.playGame = () => {
+    $('#game-items').toggle(true);
     $('#loading-screen').toggle(false);
     $('#score span').text(game.score);
     $('#lives span').text(game.lives);
@@ -205,17 +217,18 @@ game.init = () => {
             game.moveBall(i);
         }, Math.random()*game.time);
     }  
+
 }
 
-$(function() {
-    console.log("ready!");
-    // game.getScreenWidth();
+game.init = () => {
     game.responsiveResize();
     $('#loading-screen').toggle(true);
     $('#finish-screen').toggle(false);
+    $('#game-items').toggle(false);
+
     $('.trump-head').on('click', function(){
         $('#player').attr('src', 'assets/trump.png')
-        game.init();  
+        game.playGame();  
     });
     $('.hilary-head').on('click', function(){
         $('#player').attr('src', 'assets/hilaryfixed.png');
@@ -228,8 +241,15 @@ $(function() {
         game.dodge = 'trump.png';
         game.playerSmile = 'hilary-smile.png';
         game.playerAngry = 'hilary-sad.png';   
-        game.init();  
+        game.playGame();  
+
     });
+}
+
+$(function() {
+    console.log("ready!");
+    game.init();
+    
     $(window).resize(function(){
         game.responsiveResize();
     });

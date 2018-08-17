@@ -4,10 +4,8 @@
 @import 'partials/_loading-screen.scss';
 
 .stage {
-    /* width: 300px; */
-    background: radial-gradient($primary, #0a153a);
-    min-width: 300px;
     max-width: 400px;
+    min-width: 300px;
     margin: 0 auto;
     height: 100vh;
     display: block;
@@ -82,7 +80,8 @@ button {
     bottom: 0;
     z-index: 3;
     color: white; 
-    background: radial-gradient($primary, #0a153a);}
+    // background: radial-gradient($primary, #0a153a);}
+}
 
 .timer {
     opacity: .5;
