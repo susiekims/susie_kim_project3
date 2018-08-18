@@ -5,9 +5,10 @@ const game = {};
 
 game.score = 0;
 game.lives = 5;
+game.time = 30000;
+game.numberOfBalls = 30;
 game.speed = 2000;
-game.time = 10000;
-game.numberOfBalls =30;
+game.numberOfColumns = 5;
 game.ballTypes = [
     `assets/hair.png`,
     `assets/hilaryfixed.png`
@@ -22,6 +23,36 @@ game.goodScoreText = `You look amazing, Mr. President!`;
 game.badScoreText = `Did you even try? Good luck getting a second term with THAT hair...`
 game.finishImageGood = `assets/trump-win.png`;
 game.finishImageBad = `assets/trump-pissed.png`;
+game.instructions = `You have ${game.time / 1000} seconds to catch as many toupes as you can. But don't get caught by Hillary! Use your arrow keys or click the left or right side of the screen to move side to side.`
+
+
+game.showInstuctions = () => {
+    $('#loading-screen').toggle(false);
+    $('#instructions').toggle(true);
+    $('#instructions-text').text(game.instructions);
+
+    $('#easy').on('click', function() {
+        game.numberOfBalls = 30;
+        game.speed = 1800;
+        game.numberOfColumns = 3;
+        game.playGame();
+    });
+
+    $('#medium').on('click', function() {
+        game.numberOfBalls = 40;
+        game.speed = 2000;
+        game.numberOfColumns = 5;
+        game.playGame();
+    });
+    
+    $('#hard').on('click', function() {
+        game.numberOfBalls = 50;
+        game.speed = 1200;
+        game.numberOfColumns = 7;
+        game.playGame();
+    });
+}
+
 
 game.showfinishScreen = (title, score, text, image) => {
     clearInterval(game.check);
@@ -45,7 +76,7 @@ game.startTimer = () => {
         game.time -= 1000;
         $('#timer').text(game.time /1000 + ':00');
         if (game.time < 0) {
-            if (game.score > 9) {
+            if (game.score > game.numberOfBalls * 0.4 ) {
                 game.showfinishScreen(`Time's up!`, `Your score is ${game.score}`, game.goodScoreText, game.finishImageGood)
             } else {
                 game.showfinishScreen(`Time's up!`, `Your score is ${game.score}`, game.badScoreText, game.finishImageBad);
@@ -55,7 +86,7 @@ game.startTimer = () => {
 }
 
 game.responsiveResize = () => {
-    game.interval = $('.stage').width() / 3;
+    game.interval = $('.stage').width() / game.numberOfColumns;
     $('#player').css({
         'width': game.interval,
         'bottom': 10,
@@ -80,7 +111,7 @@ game.movePlayer = () => {
             }, 200);
         } 
 
-        if ((e.keyCode || e.which) == 39 && playerPositionX < game.interval * 2) {
+        if ((e.keyCode || e.which) == 39 && playerPositionX < game.interval * (game.numberOfColumns - 1 )) {
             console.log(playerPositionX);
             playerPositionX += game.interval;
             player.animate({
@@ -99,7 +130,7 @@ game.movePlayer = () => {
         } 
     });
     $('#right').on('click', function() {
-        if (playerPositionX < game.interval * 2) {
+        if (playerPositionX < game.interval * (game.numberOfColumns - 1)) {
             playerPositionX += game.interval;
             player.animate({
                 left: `+=${game.interval}`
@@ -120,9 +151,9 @@ game.displayBall = (index) => {
 // animate the ball so it falls to the bottom of the page;
 game.moveBall = (index) => {
     const $ball = $(`#ball${index}`);
-    $ball.css('left', (Math.floor(Math.random() * 3))*game.interval );
+    $ball.css('left', (Math.floor(Math.random() * game.numberOfColumns))*game.interval );
     $ball.animate({
-        top: `+=${$('.stage').height() + game.interval}`
+        top: `+=${$('.stage').height() + 200}`
       }, game.speed);
     game.checkPosition(index);
 
@@ -143,10 +174,10 @@ game.checkPosition = (index) => {
         const playerPositionY = $player.position().top;
         const playerPositionX = $player.position().left;
 
-        if (ballPositionY > playerPositionY - 100 // 550 - 580 
-            && ballPositionY < playerPositionY + 20
-            && ballPositionX < playerPositionX + 20
-            && ballPositionX > playerPositionX - 20
+        if (ballPositionY > playerPositionY - (game.interval / 2) // 550 - 580 
+            && ballPositionY < playerPositionY + (game.interval / 2)
+            && ballPositionX < playerPositionX + (game.interval / 2)
+            && ballPositionX > playerPositionX - (game.interval / 2)
             && $ball.attr('src') == `assets/${game.catch}`) {
             clearInterval(check);
             $ball.remove();
@@ -157,9 +188,10 @@ game.checkPosition = (index) => {
                 $player.attr('src', `assets/${game.player}`);
             }, 500);
             
-        } else if (ballPositionY > playerPositionY - 50 // 550 - 580 
-            && ballPositionY < playerPositionY
-            && playerPositionX == ballPositionX 
+        } else if (ballPositionY > playerPositionY - (game.interval / 2)// 550 - 580 
+            && ballPositionY < playerPositionY + (game.interval / 2)
+            && ballPositionX < playerPositionX + (game.interval / 2)
+            && ballPositionX > playerPositionX - (game.interval / 2)
             && $ball.attr('src') == `assets/${game.dodge}`) {
             clearInterval(check);
             game.lives--;
@@ -185,13 +217,15 @@ game.showLives = (numberOfLives) => {
 }
 
 game.playGame = () => {
-    $('#counter').attr('src', `assets/${game.catch}`);
+    game.responsiveResize();
     $('#game-items').toggle(true);
-    $('#loading-screen').toggle(false);
     $('#score span').text(game.score);
+    game.showLives(game.lives);
+    $('#counter').attr('src', `assets/${game.catch}`);
+    $('#loading-screen').toggle(false);
+    $('#instructions').toggle(false);
     game.startTimer();
     game.movePlayer();
-    game.showLives(game.lives);
     for (let i = 0; i < game.numberOfBalls; i++) {
         setTimeout(()=>{
             game.displayBall(i);
@@ -202,14 +236,15 @@ game.playGame = () => {
 }
 
 game.init = () => {
-    game.responsiveResize();
     $('#loading-screen').toggle(true);
     $('#finish-screen').toggle(false);
     $('#game-items').toggle(false);
+    $('#instructions').toggle(false);
     $('.trump-head').on('click', function(){
         $('#player').attr('src', 'assets/trump.png')
         setTimeout(()=>{
-            game.playGame();
+            // game.playGame();
+            game.showInstuctions();
         }, 1000);
     });
     $('.hilary-head').on('click', function(){
@@ -228,8 +263,10 @@ game.init = () => {
         game.noLivesText = `Emails exposed... DAB!`;
         game.goodScoreText = `Great work getting all the emails!`;
         game.badScoreText = `Do you think this is a game? This is why you lost the election...`; 
+        game.instructions = `You have ${game.time / 1000} seconds to stop as many emails as you can! But don't let Trump catch you. Use the arrow keys or click the left or right side of the screen to move side to side.`
         setTimeout(()=>{
-            game.playGame();
+            // game.playGame();
+            game.showInstuctions();
         }, 1000);
     });
 }

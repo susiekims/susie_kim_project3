@@ -7,9 +7,10 @@ body {
     color: white; 
     background: radial-gradient($primary, #0a153a);
     text-transform: uppercase;
+    overflow: hidden; 
 }
 
-#replay {
+button {
     background: $secondary;
     border: none;
     border-radius: 5px;
