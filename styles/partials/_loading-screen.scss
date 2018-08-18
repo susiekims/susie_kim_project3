@@ -11,7 +11,7 @@
     text-align: center;
 
     h1 {
-        font-size: 7rem;
+        font-size: 8rem;
         line-height: 0.7;
         // text-shadow: 0px 5px 10px rgba(0, 0, 0, 0.8);
     }
@@ -40,7 +40,8 @@
     }
 
     .head {
-        top: 35%;
+        top: 50%;
+        transform: translateY(-50%);
         display: inline-block;
         position: absolute;
         transition: all .2s;
@@ -66,13 +67,13 @@
     }
 
     .hilary-head:hover {
-        transform: scale(1.2) translateX(25%);
+        transform: scale(1.2) translate(25%, -50%);
         // animation-fill-mode: backwards;
     }
 
 
     .trump-head:hover {
-        transform: scale(1.2) translateX(-25%);
+        transform: scale(1.2) translate(-25%, -50%);
     }
 
     // .hilary-head:hover ~ .trump-head {
@@ -84,14 +85,14 @@
     // }
 
     .trump-head {
-        width: 200px;
+        width: 230px;
         right: -200px;
         animation: trump-entrance 1s .5s ease; // glow 2s 1s infinite;
         animation-fill-mode: forwards;
     }
 
     .hilary-head {
-        width: 180px;
+        width: 200px;
         animation: hilary-entrance 1s .5s ease; // glow 2s 2s infinite;
         left: -200px;
         animation-fill-mode: forwards;
@@ -99,12 +100,12 @@
 
     @keyframes hilary-entrance {
         0% {left: -200px}
-        100% {left: 10px}
+        100% {left: 30%}
     }
 
     @keyframes trump-entrance {
         0% {right: -200px}
-        100% {right: 10px}
+        100% {right: 30%}
     }
 
     .name {
@@ -114,13 +115,13 @@
         transform: translateX(-50%);
     }
 
-    .hilary-head:hover ~ .hilary-name {
+    .hilary-head:hover ~ .hilary-name, .trump-head:hover ~ .trump-name {
         left: 50%;
     }
 
-    .trump-head:hover ~ .trump-name {
-        left: 50%;
-    }
+    // .trump-head:hover ~ .trump-name {
+    //     left: 50%;
+    // }
 
     .hilary-name {
         left: -100px;

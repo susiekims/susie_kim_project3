@@ -7,7 +7,7 @@ game.score = 0;
 game.lives = 5;
 game.speed = 2000;
 game.time = 30000;
-game.numberOfBalls = 30;
+game.numberOfBalls =30;
 game.ballTypes = [
     `assets/hair.png`,
     `assets/hilaryfixed.png`
@@ -20,6 +20,9 @@ game.playerAngry = 'trump-angry.png';
 game.noLivesText = `Oh no! Hilary told the media that your hair is actually a toupe! Good try, but now you'll have to convince them its FAKE NEWS.`;
 game.goodScoreText = `Nice job! You have toupes for days! You look amazing, Mr. President!`;
 game.badScoreText = `Did you even try? Well, good luck getting a second term with THAT hair...`
+game.finishImageGood = `assets/trump-win.png`;
+game.finishImageBad = `assets/trump-pissed.png`;
+
 
 let randomNum = Math.floor(Math.random() * 2);
 
@@ -33,7 +36,7 @@ game.startTimer = () => {
     const timer = setInterval(function () {
         game.time -= 1000;
         $('#timer').text(game.time /1000 + ':00');
-        if (game.time <= 0) {
+        if (game.time < 0) {
             clearInterval(timer);
             $('#game-items').toggle(false);
             $('.ball').toggle(false);
@@ -41,8 +44,10 @@ game.startTimer = () => {
 
             if (game.score > 9) {
                 $('#finish-text').text(game.goodScoreText);
+                $('.slide-up').attr('src', game.finishImageGood);
             } else {
                 $('#finish-text').text(game.badScoreText);
+                $('.slide-up').attr('src', game.finishImageBad);
             }
             $('#finish-screen').toggle(true);
 
@@ -172,7 +177,7 @@ game.moveBall = (index) => {
 // compare y positions of ball and box within 40px
 // if they touch, add 1 to the score and delete the ball
 game.checkPosition = (index) => {
-    const stopCheck = setInterval(function(){
+    const check = setInterval(function(){
         const $ball = $(`#ball${index}`);
         const ballPositionY = $ball.position().top;
         const ballPositionX = $ball.position().left;
@@ -182,36 +187,36 @@ game.checkPosition = (index) => {
         const playerPositionX = player.position().left;
         // console.log(trumpPositionX);
         // console.log(boxPositionX, ballPositionX);
-     
-        if (ballPositionY > playerPositionY - 50 // 550 - 580 
-            && ballPositionY < playerPositionY - 20
-            && playerPositionX == ballPositionX 
+
+        if (ballPositionY > playerPositionY - 100 // 550 - 580 
+            && ballPositionY < playerPositionY + 20
+            && ballPositionX < playerPositionX + 20
+            && ballPositionX > playerPositionX - 20
             && $ball.attr('src') == `assets/${game.catch}`) {
             $ball.remove();
             game.score++;
             $('#score span').text(game.score);
-            clearInterval(stopCheck);
+            clearInterval(check);
             player.attr('src', `assets/${game.playerSmile}`);
             setTimeout(()=>{
                 player.attr('src', `assets/${game.player}`);
             }, 500);
             
         } else if (ballPositionY > playerPositionY - 50 // 550 - 580 
-            && ballPositionY < playerPositionY - 20
+            && ballPositionY < playerPositionY
             && playerPositionX == ballPositionX 
             && $ball.attr('src') == `assets/${game.dodge}`) {
             game.lives--;
-
             game.showLives(game.lives);
             $ball.remove();
-            clearInterval(stopCheck);
+            clearInterval(check);
             player.attr('src', `assets/${game.playerAngry}`);
             setTimeout(()=>{
                 player.attr('src', `assets/${game.player}`);
             }, 500);
             if (game.lives === 0) {
-                clearInterval(stopCheck);
-                if (alert('game over! play again?')){} else {window.location.reload()} 
+                clearInterval(check);
+                alert('game over!');
             }
         }
     }, 100);
@@ -266,6 +271,8 @@ game.init = () => {
         game.dodge = 'trump.png';
         game.playerSmile = 'hilary-smile.png';
         game.playerAngry = 'hilary-sad.png';  
+        game.finishImageGood = `assets/hilary-win.png`;
+        game.finishImageBad = `assets/hilary-shrug.png`;
         game.noLivesText = `Trump called you out on your emails to the media! Now you'll have to distract them with dabbing and memes.`;
         game.goodScoreText = `Great work getting all the emails! I mean.. what emails.. there were never any emails...`;
         game.badScoreText = `Do you think this is a game? This won't do. I guess this is why you lost the election...`; 
@@ -280,9 +287,5 @@ game.init = () => {
 $(function() {
     console.log("ready!");
     game.init();
-    
-    $(window).resize(function(){
-        game.responsiveResize();
-    });
 });
 
