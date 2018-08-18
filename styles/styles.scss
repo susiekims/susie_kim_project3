@@ -22,8 +22,9 @@
     left: 0;
     right: 50%;
     z-index: 2; 
-    background: red;
-opacity: .5;}
+    // background: red;
+// opacity: .5;
+}
 
 #right {
     position: absolute;
@@ -33,8 +34,9 @@ opacity: .5;}
     right: 0;
     opacity: 0.2;
     z-index: 2; 
-    background: blue;
-    opacity: .5;}
+    // background: blue;
+    // opacity: .5;
+}
 
 .ball {
     position: absolute;
