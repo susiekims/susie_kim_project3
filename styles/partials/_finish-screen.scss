@@ -4,6 +4,8 @@
     #slide-down {
         // animation: slide-down .5s .5s;
         position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
         animation: slide-down .5s;
         animation-fill-mode: both;
 
@@ -26,6 +28,8 @@
         animation: slide-up .5s;
         animation-fill-mode: forwards;
         bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
     }
 
     @keyframes slide-down {

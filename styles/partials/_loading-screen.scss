@@ -46,65 +46,60 @@
         position: absolute;
         transition: all .2s;
         cursor: pointer;
-        filter: grayscale(100%);
+        // filter: grayscale(100%);
+
     }
+
 
     @keyframes glow {
         0% {
-            filter: grayscale(0%) drop-shadow(0px 0px -5px red);
+            filter: drop-shadow(0px 0px -5px white);
         }
         50% {
-            filter: grayscale(100%) drop-shadow(0px 0px 5px red);
+            filter: drop-shadow(0px 0px 5px white);
         }
         100% {
-            filter: grayscale(0%) drop-shadow(0px 0px -5px red);
+            filter: drop-shadow(0px 0px -5px white);
         }
     }
 
     .head:hover {
         z-index: 1;
-        filter: grayscale(0%) contrast(130%) drop-shadow(0px 0px 0px);
+        // filter: grayscale(0%);
+    }
+
+    .head:active {
+        filter: drop-shadow(0px 0px 5px red);
     }
 
     .hilary-head:hover {
-        transform: scale(1.2) translate(25%, -50%);
-        // animation-fill-mode: backwards;
+        transform: scale(1.2) translate(35%, -50%);
     }
 
 
     .trump-head:hover {
-        transform: scale(1.2) translate(-25%, -50%);
+        transform: scale(1.2) translate(-35%, -50%);
     }
-
-    // .hilary-head:hover ~ .trump-head {
-    //     filter: grayscale(100%) brightness(30%);
-    // }
-
-    // .trump-head:hover ~ .hilary-head {
-    //     filter: grayscale(100%) brightness(30%);
-    // }
 
     .trump-head {
         width: 230px;
-        right: -200px;
-        animation: trump-entrance 1s .5s ease; // glow 2s 1s infinite;
-        animation-fill-mode: forwards;
+        animation: trump-entrance 1s .5s ease, glow 2s 1s infinite;
+        animation-fill-mode: both;
     }
 
     .hilary-head {
         width: 200px;
-        animation: hilary-entrance 1s .5s ease; // glow 2s 2s infinite;
-        left: -200px;
-        animation-fill-mode: forwards;
+        animation: hilary-entrance 1s .5s ease, glow 2s 2s infinite;
+        animation-fill-mode: both;
     }
 
     @keyframes hilary-entrance {
-        0% {left: -200px}
+        0% {left: -300px}
         100% {left: 30%}
     }
 
     @keyframes trump-entrance {
-        0% {right: -200px}
+        0% {right: -300px}
         100% {right: 30%}
     }
 
