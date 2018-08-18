@@ -6,7 +6,7 @@ const game = {};
 game.score = 0;
 game.lives = 5;
 game.speed = 2000;
-game.time = 3000;
+game.time = 30000;
 game.numberOfBalls = 30;
 game.ballTypes = [
     `assets/hair.png`,
@@ -254,7 +254,9 @@ game.init = () => {
 
     $('.trump-head').on('click', function(){
         $('#player').attr('src', 'assets/trump.png')
-        game.playGame();  
+        setTimeout(()=>{
+            game.playGame();
+        }, 1000);
     });
     $('.hilary-head').on('click', function(){
         $('#player').attr('src', 'assets/hilaryfixed.png');
@@ -268,10 +270,12 @@ game.init = () => {
         game.playerSmile = 'hilary-smile.png';
         game.playerAngry = 'hilary-sad.png';  
         game.noLivesText = `Trump called you out on your emails to the media! Now you'll have to distract them with dabbing and memes.`;
-game.goodScoreText = `Great work getting all the emails! I mean.. what emails.. there were never any emails...`;
-game.badScoreText = `Do you think this is a game? This won't do. I guess this is why you lost the election...` 
+        game.goodScoreText = `Great work getting all the emails! I mean.. what emails.. there were never any emails...`;
+        game.badScoreText = `Do you think this is a game? This won't do. I guess this is why you lost the election...`; 
         
-        game.playGame();  
+        setTimeout(()=>{
+            game.playGame();
+        }, 1000);
 
     });
 }
