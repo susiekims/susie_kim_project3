@@ -4,6 +4,10 @@
 @import 'partials/_loading-screen.scss';
 @import 'partials/_finish-screen.scss';
 
+
+body {
+    overflow: hidden;
+}
 .stage {
     overflow: hidden;
     max-width: 600px;

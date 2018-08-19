@@ -399,6 +399,9 @@ button:hover, button:active {
   100% {
     bottom: -20px; } }
 
+body {
+  overflow: hidden; }
+
 .stage {
   overflow: hidden;
   max-width: 600px;
