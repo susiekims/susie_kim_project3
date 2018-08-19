@@ -7,9 +7,11 @@ body {
     color: white; 
     background: radial-gradient($primary, #0a153a);
     text-transform: uppercase;
+    // overflow: hidden; 
+    letter-spacing: 0.3rem;
 }
 
-#replay {
+button {
     background: $secondary;
     border: none;
     border-radius: 5px;
@@ -18,4 +20,9 @@ body {
     letter-spacing: .5rem;
     padding: 10px 20px;
     margin: 20px auto;
+    transition: background-color .3s;
+}
+
+button:hover, button:active {
+    background: red;
 }

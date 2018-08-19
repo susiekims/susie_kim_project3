@@ -1,12 +1,93 @@
-@media (max-width: 367px) {
+@media (max-width: 1000px) {
+    // .hilary-head:hover {
+    //     transform: scale(1.2) translate(20%, -50%);
+    // }
+    // .trump-head:hover {
+    //     transform: scale(1.2) translate(-20%, -50%);
+    // }
     @keyframes hilary-entrance {
-        0% {left: -200px}
+        0% {left: -300px}
+        100% {left: 25%}
+    }
+
+    @keyframes trump-entrance {
+        0% {right: -300px}
+        100% {right: 25%}
+    }
+
+    #instructions {
+        padding: 0 20%;
+    }
+}
+
+@media (max-width: 815px) {
+    // .hilary-head:hover {
+    //     transform: scale(1.2) translate(20%, -50%);
+    // }
+    // .trump-head:hover {
+    //     transform: scale(1.2) translate(-20%, -50%);
+    // }
+    @keyframes hilary-entrance {
+        0% {left: -300px}
+        100% {left: 20%}
+    }
+
+    @keyframes trump-entrance {
+        0% {right: -300px}
+        100% {right: 20%}
+    }
+}
+
+@media (max-width: 700px) {
+    @keyframes hilary-entrance {
+        0% {left: -300px}
+        100% {left: 15%}
+    }
+
+    @keyframes trump-entrance {
+        0% {right: -300px}
+        100% {right: 15%}
+    }
+}
+
+@media (max-width: 600px) {
+
+    #instructions {
+        padding: 0px 10px;
+    }
+
+    @keyframes hilary-entrance {
+        0% {left: -300px}
+        100% {left: 8%}
+    }
+
+    @keyframes trump-entrance {
+        0% {right: -300px}
+        100% {right: 8%}
+    }
+}
+
+@media (max-width: 400px) {
+
+    .head {
+        width: 50px;
+    }
+
+    .loading-screen h1 {
+        font-size: 7rem;
+    }
+
+    #finish-screen #slide-down h1 {
+        font-size: 3rem;
+    }
+    
+    @keyframes hilary-entrance {
+        0% {left: -300px}
         100% {left: -10%}
     }
 
     @keyframes trump-entrance {
-        0% {right: -200px}
+        0% {right: -300px}
         100% {right: -10%}
     }
 }
-

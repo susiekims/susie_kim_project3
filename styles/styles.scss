@@ -5,14 +5,14 @@
 @import 'partials/_finish-screen.scss';
 
 .stage {
-    max-width: 400px;
+    overflow: hidden;
+    max-width: 600px;
     min-width: 300px;
     margin: 0 auto;
     height: 100vh;
     display: block;
     margin: 0 auto;
     position: relative;
-    overflow: hidden; 
 }
 
 #left {
@@ -22,8 +22,9 @@
     left: 0;
     right: 50%;
     z-index: 2; 
-    background: red;
-opacity: .5;}
+    // background: red;
+// opacity: .5;
+}
 
 #right {
     position: absolute;
@@ -33,8 +34,9 @@ opacity: .5;}
     right: 0;
     opacity: 0.2;
     z-index: 2; 
-    background: blue;
-    opacity: .5;}
+    // background: blue;
+    // opacity: .5;
+}
 
 .ball {
     position: absolute;
@@ -45,20 +47,19 @@ opacity: .5;}
     top: -100px; }
 
 #score {
-    // position: absolute;
+    position: absolute;
+    right: 0;
     font-size: 30px;
     padding: 10px;
     // top: 0;
-    margin-right: 10px;    
-    float: right;
+    // margin-right: 10px;    
+    // float: right;
     // right: 0; 
 
 }
 
 #lives {
-    float: left;
-    padding: 10px;
-    // display: inline-block;
+    position: fixed;
 }
 
 #lives img {

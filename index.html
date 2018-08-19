@@ -10,49 +10,65 @@
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:600,900" rel="stylesheet"> 
 </head>
 <body>
+    <div id="instructions">
+        <h3 id="instructions-text"></h3>
+        <div class="levels">
+            <button id="easy">easy</button>
+            <button id="medium">medium</button>
+            <button id="hard">hard</button>
+        </div>
+    </div>
+    <div id=lives-score>
+        <div id="lives"></div>
+        <div id="score"><img id="counter"> <span></span></div>
+    </div>
+
+    <div id="loading-screen" class="loading-screen">
+        <div class="title">
+            <h1 class="title-trump">Trump</h1>
+            <h1 class="title-dump">Dump</h1>
+        </div>
+        <img src="assets/banner.svg" class="banner" alt="">
+        <img src="assets/hilary-loader.png" class="head hilary-head">
+        <img src="assets/trump-loader.png" class="head trump-head">
+        <h3 class="hilary-name name">Hilary</h3>
+        <h3 class="trump-name name">Trump</h3>
+        <h4 class="trump-slogan slogan">make my hair great again</h4>
+        <h4 class="hilary-slogan slogan">get those emails</h4>
+        <h2>Choose your player</h2>
+    </div>
+
+    
+    
     <section class="stage">
         <div id="game-items">
             <div class="timer" id="timer"></div>
-            <div id="lives"></div>
-            <div id="score"><img id="counter"> <span></span></div>
             <img id="player" src="assets/trump.png">
         </div>
-
-
-        <div id="loading-screen" class="loading-screen">
-            <div class="title">
-                <h1 class="title-trump">Trump</h1>
-                <h1 class="title-dump">Dump</h1>
-            </div>
-            <img src="assets/banner.svg" class="banner" alt="">
-
-            <img src="assets/hilary-loader.png" class="head hilary-head">
-            <img src="assets/trump-loader.png" class="head trump-head">
-            
-            <h3 class="hilary-name name">Hilary</h3>
-            <h3 class="trump-name name">Trump</h3>
-            <h4 class="trump-slogan slogan">make my hair great again</h4>
-            <h4 class="hilary-slogan slogan">get those emails</h4>
-            <h2>Choose your player</h2>
-            <!-- <button id='start'>Start</button> -->
-        </div>
-
-
-        <div id="finish-screen" class="finish-screen">
-            <div class="slide-down">
-                <h1>Times up!</h1>
-                <h2>Your score is <span id="score-final"></span></h2>
-                <h3 id="finish-text"></h3>
-                <button id='replay'>Replay</button>
-            </div>
-            
-            <img class="slide-up">
-        </div>
+<<<<<<< HEAD
         <div id="left" class="button"></div>
         <div id="right" class="button"></div>
     </section>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+=======
+        <div id="left"></div>
+        <div id="right"></div>
+    </section>
+    
+
+    <div id="finish-screen" class="finish-screen">
+        <div id="slide-down">
+            <h1></h1>
+            <h2 id="score-final"></h2>
+            <h3 id="finish-text"></h3>
+            <button id='replay'>Replay</button>
+        </div> 
+        <img src="" class="slide-up">
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+>>>>>>> master
     <script src="script-with-classes.js"></script>
 </body>
 </html>
