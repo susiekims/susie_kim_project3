@@ -205,12 +205,7 @@ game.checkPosition = (index) => {
                 $player.attr('src', `assets/${game.player}`);
             }, 500);
             if (game.lives === 0) {
-<<<<<<< HEAD
-                clearInterval(check);
-                if (alert('game over! play again?')){} else {window.location.reload()} 
-=======
                 game.showfinishScreen('No more lives!', '', game.noLivesText, game.finishImageBad);
->>>>>>> master
             }
         } else if (ballPositionY > $('.stage').height()) {
             clearInterval(check);
@@ -296,9 +291,5 @@ game.init = () => {
 $(function() {
     console.log("ready!");
     game.init();
-<<<<<<< HEAD
 });
 
-=======
-});
->>>>>>> master
