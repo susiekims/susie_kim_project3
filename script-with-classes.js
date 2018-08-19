@@ -23,7 +23,7 @@ game.goodScoreText = `You look amazing, Mr. President!`;
 game.badScoreText = `Did you even try? Good luck getting a second term with THAT hair...`
 game.finishImageGood = `assets/trump-win.png`;
 game.finishImageBad = `assets/trump-pissed.png`;
-game.instructions = `You have ${game.time / 1000} seconds to catch as many toupes as you can. But don't get caught by Hillary! Use your arrow keys or click the left or right side of the screen to move side to side.`
+game.instructions = `Catch as many toupes as you can! But don't get caught by Hillary. Use your arrow keys or click the side of the screen you want to move to.`
 
 
 game.showInstuctions = () => {
@@ -33,22 +33,25 @@ game.showInstuctions = () => {
 
     $('#easy').on('click', function() {
         game.numberOfBalls = 30;
-        game.speed = 1800;
-        game.numberOfColumns = 3;
+        game.speed = 2100;
+        game.numberOfColumns = 2;
+        $('.stage').css('max-width', 200);
         game.playGame();
     });
 
     $('#medium').on('click', function() {
         game.numberOfBalls = 40;
         game.speed = 2000;
-        game.numberOfColumns = 5;
+        game.numberOfColumns = 3;
+        $('.stage').css('max-width', 400);
         game.playGame();
     });
     
     $('#hard').on('click', function() {
         game.numberOfBalls = 50;
-        game.speed = 1200;
-        game.numberOfColumns = 7;
+        game.speed = 1600;
+        game.numberOfColumns = 5;
+        $('.stage').css('max-width', 800);
         game.playGame();
     });
 }
@@ -76,7 +79,7 @@ game.startTimer = () => {
         game.time -= 1000;
         $('#timer').text(game.time /1000 + ':00');
         if (game.time < 0) {
-            if (game.score > game.numberOfBalls * 0.4 ) {
+            if (game.score > 11) {
                 game.showfinishScreen(`Time's up!`, `Your score is ${game.score}`, game.goodScoreText, game.finishImageGood)
             } else {
                 game.showfinishScreen(`Time's up!`, `Your score is ${game.score}`, game.badScoreText, game.finishImageBad);
@@ -263,7 +266,9 @@ game.init = () => {
         game.noLivesText = `Emails exposed... DAB!`;
         game.goodScoreText = `Great work getting all the emails!`;
         game.badScoreText = `Do you think this is a game? This is why you lost the election...`; 
-        game.instructions = `You have ${game.time / 1000} seconds to stop as many emails as you can! But don't let Trump catch you. Use the arrow keys or click the left or right side of the screen to move side to side.`
+        game.instructions = `You have ${game.time / 1000} seconds to stop as many emails as you can! 
+        But don't let Trump catch you. 
+        Use the arrow keys or click the side you want to move to.`
         setTimeout(()=>{
             // game.playGame();
             game.showInstuctions();
@@ -275,4 +280,3 @@ $(function() {
     console.log("ready!");
     game.init();
 });
-

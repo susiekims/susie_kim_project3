@@ -13,11 +13,11 @@
     h1 {
         font-size: 8rem;
         line-height: 0.7;
-        // text-shadow: 0px 5px 10px rgba(0, 0, 0, 0.8);
+        text-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
     }
 
     .title {
-        margin-top: 70px;
+        margin-top: 50px;
     }
 
     .banner {
@@ -41,6 +41,7 @@
 
     .head {
         top: 50%;
+        width: 200px;
         transform: translateY(-50%);
         display: inline-block;
         position: absolute;
@@ -73,22 +74,20 @@
     }
 
     .hilary-head:hover {
-        transform: scale(1.2) translate(35%, -50%);
+        transform: scale(1.1) translate(35%, -50%);
     }
 
 
     .trump-head:hover {
-        transform: scale(1.2) translate(-35%, -50%);
+        transform: scale(1.1) translate(-35%, -50%);
     }
 
     .trump-head {
-        width: 230px;
         animation: trump-entrance 1s .5s ease, glow 2s 1s infinite;
         animation-fill-mode: both;
     }
 
     .hilary-head {
-        width: 200px;
         animation: hilary-entrance 1s .5s ease, glow 2s 2s infinite;
         animation-fill-mode: both;
     }
@@ -141,11 +140,11 @@
     }
 
     .trump-head:hover ~ .trump-slogan {
-        top: 70px;
+        top: 50px;
     }
 
     .hilary-head:hover ~ .hilary-slogan {
-        top: 70px;
+        top: 50px;
     }
     
 }
@@ -153,11 +152,23 @@
 #instructions {
     position: absolute;
     top: 20%;
-    font-size: 20px;
+    font-size: 1.8rem;
     text-align: center;
     z-index: 10;
-    padding: 0px 20%;
+    padding: 0 20%;
 
+    .levels {
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+        margin: 0 auto;
+
+        button {
+            flex-basis:  100%;
+            width: 100%;
+            margin: 10px 0px;
+        }
+    }
 
 }
 

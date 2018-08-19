@@ -5,7 +5,9 @@
 @import 'partials/_finish-screen.scss';
 
 .stage {
+    overflow: hidden;
     max-width: 600px;
+    min-width: 300px;
     margin: 0 auto;
     height: 100vh;
     display: block;

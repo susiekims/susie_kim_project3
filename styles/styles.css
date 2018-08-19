@@ -148,7 +148,7 @@ body {
   background: -o-radial-gradient(#2342c7, #0a153a);
   background: radial-gradient(#2342c7, #0a153a);
   text-transform: uppercase;
-  overflow: hidden; }
+  letter-spacing: 0.3rem; }
 
 button {
   background: darkred;
@@ -158,7 +158,13 @@ button {
   font-size: 1.2rem;
   letter-spacing: .5rem;
   padding: 10px 20px;
-  margin: 20px auto; }
+  margin: 20px auto;
+  -webkit-transition: background-color .3s;
+  -o-transition: background-color .3s;
+  transition: background-color .3s; }
+
+button:hover, button:active {
+  background: red; }
 
 .loading-screen {
   padding: 20px;
@@ -173,9 +179,10 @@ button {
   text-align: center; }
   .loading-screen h1 {
     font-size: 8rem;
-    line-height: 0.7; }
+    line-height: 0.7;
+    text-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3); }
   .loading-screen .title {
-    margin-top: 70px; }
+    margin-top: 50px; }
   .loading-screen .banner {
     width: 380px;
     position: absolute;
@@ -197,6 +204,7 @@ button {
     width: 100%; }
   .loading-screen .head {
     top: 50%;
+    width: 200px;
     -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
@@ -234,21 +242,19 @@ button {
     -webkit-filter: drop-shadow(0px 0px 5px red);
     filter: drop-shadow(0px 0px 5px red); }
   .loading-screen .hilary-head:hover {
-    -webkit-transform: scale(1.2) translate(35%, -50%);
-    -ms-transform: scale(1.2) translate(35%, -50%);
-    transform: scale(1.2) translate(35%, -50%); }
+    -webkit-transform: scale(1.1) translate(35%, -50%);
+    -ms-transform: scale(1.1) translate(35%, -50%);
+    transform: scale(1.1) translate(35%, -50%); }
   .loading-screen .trump-head:hover {
-    -webkit-transform: scale(1.2) translate(-35%, -50%);
-    -ms-transform: scale(1.2) translate(-35%, -50%);
-    transform: scale(1.2) translate(-35%, -50%); }
+    -webkit-transform: scale(1.1) translate(-35%, -50%);
+    -ms-transform: scale(1.1) translate(-35%, -50%);
+    transform: scale(1.1) translate(-35%, -50%); }
   .loading-screen .trump-head {
-    width: 230px;
     -webkit-animation: trump-entrance 1s .5s ease, glow 2s 1s infinite;
     animation: trump-entrance 1s .5s ease, glow 2s 1s infinite;
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both; }
   .loading-screen .hilary-head {
-    width: 200px;
     -webkit-animation: hilary-entrance 1s .5s ease, glow 2s 2s infinite;
     animation: hilary-entrance 1s .5s ease, glow 2s 2s infinite;
     -webkit-animation-fill-mode: both;
@@ -311,47 +317,63 @@ button {
     transition: top .5s;
     letter-spacing: .5rem; }
   .loading-screen .trump-head:hover ~ .trump-slogan {
-    top: 70px; }
+    top: 50px; }
   .loading-screen .hilary-head:hover ~ .hilary-slogan {
-    top: 70px; }
+    top: 50px; }
 
 #instructions {
   position: absolute;
   top: 20%;
-  font-size: 20px;
+  font-size: 1.8rem;
   text-align: center;
   z-index: 10;
-  padding: 0px 20%; }
+  padding: 0 20%; }
+  #instructions .levels {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 300px;
+    margin: 0 auto; }
+    #instructions .levels button {
+      -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+      width: 100%;
+      margin: 10px 0px; }
 
-#finish-screen #slide-down {
-  position: relative;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
-  transform: translateX(-50%);
-  -webkit-animation: slide-down .5s;
-  animation: slide-down .5s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both; }
-  #finish-screen #slide-down h1 {
-    font-size: 6rem; }
-  #finish-screen #slide-down h2 {
-    font-size: 3rem; }
-  #finish-screen #slide-down h3 {
-    margin: 0 50px;
-    font-size: 2rem; }
-
-#finish-screen .slide-up {
-  position: relative;
-  -webkit-animation: slide-up .5s;
-  animation: slide-up .5s;
-  -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-  bottom: 0;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
-  transform: translateX(-50%); }
+#finish-screen {
+  overflow: hidden; }
+  #finish-screen #slide-down {
+    position: relative;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    -webkit-animation: slide-down .5s;
+    animation: slide-down .5s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both; }
+    #finish-screen #slide-down h1 {
+      font-size: 5rem; }
+    #finish-screen #slide-down h2 {
+      font-size: 3rem; }
+    #finish-screen #slide-down h3 {
+      margin: 0 50px;
+      font-size: 2rem; }
+  #finish-screen .slide-up {
+    position: relative;
+    -webkit-animation: slide-up .5s;
+    animation: slide-up .5s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    bottom: 0;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%); }
 
 @-webkit-keyframes slide-down {
   0% {
@@ -378,7 +400,9 @@ button {
     bottom: -20px; } }
 
 .stage {
+  overflow: hidden;
   max-width: 600px;
+  min-width: 300px;
   margin: 0 auto;
   height: 100vh;
   display: block;
@@ -448,3 +472,123 @@ button {
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%); }
+
+@media (max-width: 1000px) {
+  @-webkit-keyframes hilary-entrance {
+    0% {
+      left: -300px; }
+    100% {
+      left: 25%; } }
+  @keyframes hilary-entrance {
+    0% {
+      left: -300px; }
+    100% {
+      left: 25%; } }
+  @-webkit-keyframes trump-entrance {
+    0% {
+      right: -300px; }
+    100% {
+      right: 25%; } }
+  @keyframes trump-entrance {
+    0% {
+      right: -300px; }
+    100% {
+      right: 25%; } }
+  #instructions {
+    padding: 0 20%; } }
+
+@media (max-width: 815px) {
+  @-webkit-keyframes hilary-entrance {
+    0% {
+      left: -300px; }
+    100% {
+      left: 20%; } }
+  @keyframes hilary-entrance {
+    0% {
+      left: -300px; }
+    100% {
+      left: 20%; } }
+  @-webkit-keyframes trump-entrance {
+    0% {
+      right: -300px; }
+    100% {
+      right: 20%; } }
+  @keyframes trump-entrance {
+    0% {
+      right: -300px; }
+    100% {
+      right: 20%; } } }
+
+@media (max-width: 700px) {
+  @-webkit-keyframes hilary-entrance {
+    0% {
+      left: -300px; }
+    100% {
+      left: 15%; } }
+  @keyframes hilary-entrance {
+    0% {
+      left: -300px; }
+    100% {
+      left: 15%; } }
+  @-webkit-keyframes trump-entrance {
+    0% {
+      right: -300px; }
+    100% {
+      right: 15%; } }
+  @keyframes trump-entrance {
+    0% {
+      right: -300px; }
+    100% {
+      right: 15%; } } }
+
+@media (max-width: 600px) {
+  #instructions {
+    padding: 0px 10px; }
+  @-webkit-keyframes hilary-entrance {
+    0% {
+      left: -300px; }
+    100% {
+      left: 8%; } }
+  @keyframes hilary-entrance {
+    0% {
+      left: -300px; }
+    100% {
+      left: 8%; } }
+  @-webkit-keyframes trump-entrance {
+    0% {
+      right: -300px; }
+    100% {
+      right: 8%; } }
+  @keyframes trump-entrance {
+    0% {
+      right: -300px; }
+    100% {
+      right: 8%; } } }
+
+@media (max-width: 400px) {
+  .head {
+    width: 50px; }
+  .loading-screen h1 {
+    font-size: 7rem; }
+  #finish-screen #slide-down h1 {
+    font-size: 3rem; }
+  @-webkit-keyframes hilary-entrance {
+    0% {
+      left: -300px; }
+    100% {
+      left: -10%; } }
+  @keyframes hilary-entrance {
+    0% {
+      left: -300px; }
+    100% {
+      left: -10%; } }
+  @-webkit-keyframes trump-entrance {
+    0% {
+      right: -300px; }
+    100% {
+      right: -10%; } }
+  @keyframes trump-entrance {
+    0% {
+      right: -300px; }
+    100% {
+      right: -10%; } } }
