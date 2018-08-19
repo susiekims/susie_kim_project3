@@ -167,6 +167,7 @@ button:hover, button:active {
   background: red; }
 
 .loading-screen {
+  overflow: hidden;
   padding: 20px;
   text-align: center;
   position: absolute;

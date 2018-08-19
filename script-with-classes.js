@@ -1,14 +1,17 @@
 // create game object for functions to live on
 const game = {};
 
-// declare score, update score dynamically 
-
+// game variables 
 game.score = 0;
 game.lives = 5;
 game.time = 30000;
 game.numberOfBalls = 30;
 game.speed = 2000;
 game.numberOfColumns = 5;
+
+// player variables
+// these values change depending on user's selection
+// trump is set as default
 game.ballTypes = [
     `assets/hair.png`,
     `assets/hilaryfixed.png`
@@ -23,9 +26,22 @@ game.goodScoreText = `You look amazing, Mr. President!`;
 game.badScoreText = `Did you even try? Good luck getting a second term with THAT hair...`
 game.finishImageGood = `assets/trump-win.png`;
 game.finishImageBad = `assets/trump-pissed.png`;
-game.instructions = `Catch as many toupes as you can! But don't get caught by Hillary. Use your arrow keys or click the side of the screen you want to move to.`
+game.instructions = `Catch as many toupes as you can! But don't get caught by Hillary. Use your arrow keys or click the side of the screen you want to move to.`;
+game.loseAudio = 'trump-lose.mp3';
+game.winAudio = 'trump-win-audio.mp3';
+game.catchAudio = 'chaching.mp3';
+game.dodgeAudio ='buzzer.wav';
 
+//function to play sounds
+game.playSound = (soundFile, loop = false) => {
+    let sound = document.createElement("audio");
+    sound.src = `assets/${soundFile}`;
+    sound.loop = loop;
+    sound.play();
+}
 
+// function to load instruction screen
+// depending on if the user picks easy, medium, or hard, the game variables change
 game.showInstuctions = () => {
     $('#loading-screen').toggle(false);
     $('#instructions').toggle(true);
@@ -56,7 +72,8 @@ game.showInstuctions = () => {
     });
 }
 
-
+// function to show the finish screen
+// accepts four parameters that change depending on the result of the game
 game.showfinishScreen = (title, score, text, image) => {
     clearInterval(game.check);
     clearInterval(game.timer);
@@ -73,6 +90,8 @@ game.showfinishScreen = (title, score, text, image) => {
     });
 }
 
+// function to start timer and print on page
+// if time runs out, the user's catches 40% or more of balls, they get the "good score" finish screen
 game.startTimer = () => {
     $('#timer').text(game.time /1000 + ':00');
     game.timer = setInterval(function () {
@@ -80,14 +99,20 @@ game.startTimer = () => {
         $('#timer').text(game.time /1000 + ':00');
         if (game.time < 0) {
             if (game.score > 11) {
-                game.showfinishScreen(`Time's up!`, `Your score is ${game.score}`, game.goodScoreText, game.finishImageGood)
+                game.showfinishScreen(`Time's up!`, `Your score is ${game.score}`, game.goodScoreText, game.finishImageGood);
+                game.playSound(game.winAudio);
             } else {
                 game.showfinishScreen(`Time's up!`, `Your score is ${game.score}`, game.badScoreText, game.finishImageBad);
+                game.playSound(game.loseAudio);
             }
         } 
     }, 1000);
 }
 
+// sets the size of the game stage
+// each step that the player can move is an "interval"
+// the width of the interval is the width of the stage divided by the set number of columns in the game variables
+// sets  the size and position of the player
 game.responsiveResize = () => {
     game.interval = $('.stage').width() / game.numberOfColumns;
     $('#player').css({
@@ -99,13 +124,13 @@ game.responsiveResize = () => {
 }
 
 // function to move player left and right
+// separate event listeners for arrows keys and mouse
 game.movePlayer = () => {
     const player = $('#player');
      let playerPositionX = game.interval;
-
-
-    // using arrow keys
     $("body").keydown(function(e){
+        // if left arrow key is pressed and the player is not at the left edge of the screen
+        // move the character 1 interval to the left
         if ((e.keyCode || e.which)  == 37 && playerPositionX > 0)  {
             console.log(playerPositionX);
             playerPositionX -= game.interval;
@@ -113,7 +138,9 @@ game.movePlayer = () => {
                 left: `-=${game.interval}`
             }, 200);
         } 
-
+        // if right arrow key is pressed and the player is not at the right edge of the screen
+        // move the character 1 interval to the right
+        // interval * (numberOfColumns - 1) = the furthest right position possible
         if ((e.keyCode || e.which) == 39 && playerPositionX < game.interval * (game.numberOfColumns - 1 )) {
             console.log(playerPositionX);
             playerPositionX += game.interval;
@@ -122,8 +149,6 @@ game.movePlayer = () => {
             }, 200);
         } 
     });  
-
-    // using mouse
     $('#left').on('click', function() {
         if (playerPositionX > 0)  {
             playerPositionX -= game.interval;
@@ -142,6 +167,10 @@ game.movePlayer = () => {
     });
 }
 
+// function to append "ball" to screen
+// "ball" refers to any dropping object
+// assigns each ball a random src so you have to either dodge or catch it
+// takes an "index" parameter so it can be used in a for loop
 game.displayBall = (index) => {
     const $ball = $(`#ball${index}`);
     const ballHTML = `<img src="${game.ballTypes[Math.floor(Math.random() * 2)]}" class="ball" id="ball${index}">`;
@@ -149,9 +178,9 @@ game.displayBall = (index) => {
     $('.ball').css('width', game.interval);  
 }
 
-// add a div called ball to the stage
-// give it a random x position
-// animate the ball so it falls to the bottom of the page;
+// give ball a random x position
+// animate the ball so it falls to the bottom of the page
+// pass the positions of that ball in the checkPosition function
 game.moveBall = (index) => {
     const $ball = $(`#ball${index}`);
     $ball.css('left', (Math.floor(Math.random() * game.numberOfColumns))*game.interval );
@@ -159,44 +188,40 @@ game.moveBall = (index) => {
         top: `+=${$('.stage').height() + 200}`
       }, game.speed);
     game.checkPosition(index);
-
 }
 
-
-// get x and y position of ball
-// get x position of box
-// compare y positions of ball and box within 40px
-// if they touch, add 1 to the score and delete the ball
+// get x and y position of ball and player
+// if they are within 50% distance of each other, either award or take away a life/point
+// if numberOfLives = 0, show the 'non lives" version of the finish screen
 game.checkPosition = (index) => {
     const check = setInterval(function(){
         const $ball = $(`#ball${index}`);
         const ballPositionY = $ball.position().top;
         const ballPositionX = $ball.position().left;
-
         const $player = $("#player");
         const playerPositionY = $player.position().top;
         const playerPositionX = $player.position().left;
-
         if (ballPositionY > playerPositionY - (game.interval / 2) // 550 - 580 
             && ballPositionY < playerPositionY + (game.interval / 2)
             && ballPositionX < playerPositionX + (game.interval / 2)
             && ballPositionX > playerPositionX - (game.interval / 2)
             && $ball.attr('src') == `assets/${game.catch}`) {
             clearInterval(check);
+            game.playSound(game.catchAudio);
             $ball.remove();
             game.score++;
             $('#score span').text(game.score);
             $player.attr('src', `assets/${game.playerSmile}`);
             setTimeout(()=>{
                 $player.attr('src', `assets/${game.player}`);
-            }, 500);
-            
+            }, 500);     
         } else if (ballPositionY > playerPositionY - (game.interval / 2)// 550 - 580 
             && ballPositionY < playerPositionY + (game.interval / 2)
             && ballPositionX < playerPositionX + (game.interval / 2)
             && ballPositionX > playerPositionX - (game.interval / 2)
             && $ball.attr('src') == `assets/${game.dodge}`) {
             clearInterval(check);
+            game.playSound(game.dodgeAudio);
             game.lives--;
             game.showLives(game.lives);
             $ball.remove();
@@ -205,12 +230,14 @@ game.checkPosition = (index) => {
                 $player.attr('src', `assets/${game.player}`);
             }, 500);
             if (game.lives === 0) {
+                game.playSound(game.loseAudio);
                 game.showfinishScreen('No more lives!', '', game.noLivesText, game.finishImageBad);
             }
         }
     }, 100);
 }
 
+// function to display heads on page depending on number of lives
 game.showLives = (numberOfLives) => {
     console.log(numberOfLives);
     $('#lives').empty();
@@ -219,6 +246,7 @@ game.showLives = (numberOfLives) => {
     }
 }
 
+// function to start actual game play
 game.playGame = () => {
     game.responsiveResize();
     $('#game-items').toggle(true);
@@ -238,12 +266,16 @@ game.playGame = () => {
 
 }
 
+// initialize game
+// if user chooses hillary, game variables are changed
 game.init = () => {
+    game.playSound('president.wav', true);
     $('#loading-screen').toggle(true);
     $('#finish-screen').toggle(false);
     $('#game-items').toggle(false);
     $('#instructions').toggle(false);
     $('.trump-head').on('click', function(){
+        game.playSound('trump-start.wav');
         $('#player').attr('src', 'assets/trump.png')
         setTimeout(()=>{
             // game.playGame();
@@ -251,6 +283,7 @@ game.init = () => {
         }, 1000);
     });
     $('.hilary-head').on('click', function(){
+        game.playSound('hilary-start.wav');
         $('#player').attr('src', 'assets/hilaryfixed.png');
         game.ballTypes = [
             `assets/email.png`,
@@ -269,8 +302,10 @@ game.init = () => {
         game.instructions = `You have ${game.time / 1000} seconds to stop as many emails as you can! 
         But don't let Trump catch you. 
         Use the arrow keys or click the side you want to move to.`
+        game.loseAudio = 'hilary-lose.wav';
+        game.winAudio = 'hilary-win-audio.wav';
+        game.catchAudio = 'ding.wav';
         setTimeout(()=>{
-            // game.playGame();
             game.showInstuctions();
         }, 1000);
     });
