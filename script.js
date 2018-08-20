@@ -4,8 +4,8 @@ const game = {};
 // game variables 
 game.score = 0;
 game.lives = 5;
-game.time = 5000;
-game.numberOfBalls = 30;
+game.time = 30000;
+game.numberOfBalls = 50;
 game.speed = 2000;
 game.numberOfColumns = 5;
 
@@ -49,7 +49,6 @@ game.showInstuctions = () => {
     $('#instructions-text').text(game.instructions);
 
     $('#easy').on('click', function() {
-        game.numberOfBalls = 30;
         game.speed = 2100;
         game.numberOfColumns = 2;
         $('.stage').css('max-width', 200);
@@ -57,7 +56,6 @@ game.showInstuctions = () => {
     });
 
     $('#medium').on('click', function() {
-        game.numberOfBalls = 40;
         game.speed = 2000;
         game.numberOfColumns = 3;
         $('.stage').css('max-width', 400);
@@ -65,7 +63,6 @@ game.showInstuctions = () => {
     });
     
     $('#hard').on('click', function() {
-        game.numberOfBalls = 50;
         game.speed = 1600;
         game.numberOfColumns = 5;
         $('.stage').css('max-width', 800);
@@ -99,7 +96,7 @@ game.startTimer = () => {
         game.time -= 1000;
         $('#timer').text(game.time /1000 + ':00');
         if (game.time < 0) {
-            if (game.score > 11) {
+            if (game.score > (game.numberOfBalls * 0.4) ) {
                 game.showfinishScreen(`Time's up!`, `Your score is ${game.score}`, game.goodScoreText, game.finishImageGood);
                 game.playSound(game.winAudio);
             } else {
