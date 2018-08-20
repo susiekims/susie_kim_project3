@@ -1,0 +1,71 @@
+.stage {
+    overflow: hidden;
+    max-width: 600px;
+    min-width: 300px;
+    margin: 0 auto;
+    height: 100vh;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+}
+
+#left {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 50%;
+    z-index: 2; 
+}
+
+#right {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    right: 0;
+    opacity: 0.2;
+    z-index: 2; 
+    // background: blue;
+    // opacity: .5;
+}
+
+.ball {
+    position: absolute;
+    /* width: 100px; */
+    /* height: 100px; */
+    /* border-radius: 50%; */
+    /* background: blue; */
+    top: -100px; }
+
+#score {
+    position: fixed;
+    right: 0;
+    font-size: 30px;
+    padding: 10px;
+}
+
+#lives {
+    position: fixed;
+    padding: 10px;
+}
+
+#lives img {
+    float: left;
+    width: 40px;
+}
+
+#counter {
+    width: 50px;
+    display: inline-block;
+}
+
+.timer {
+    opacity: .5;
+    color: red;
+    font-size: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+}

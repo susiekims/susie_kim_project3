@@ -151,7 +151,7 @@ body {
   letter-spacing: 0.3rem; }
 
 button {
-  background: darkred;
+  background: #931514;
   border: none;
   border-radius: 5px;
   color: white;
@@ -164,7 +164,13 @@ button {
   transition: background-color .3s; }
 
 button:hover, button:active {
-  background: red; }
+  background: #b20402; }
+
+.volume {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  margin: 20px; }
 
 .loading-screen {
   overflow: hidden;
@@ -192,11 +198,11 @@ button:hover, button:active {
     -webkit-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
     transform: translateX(-50%);
-    bottom: 12%; }
+    bottom: 100px; }
   .loading-screen h2 {
     font-size: 1.2rem;
     position: absolute;
-    bottom: 17%;
+    bottom: 125px;
     left: 50%;
     -webkit-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
@@ -288,7 +294,7 @@ button:hover, button:active {
   .loading-screen .name {
     font-size: 5rem;
     position: absolute;
-    bottom: 3%;
+    bottom: 30px;
     -webkit-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
     transform: translateX(-50%); }
@@ -356,9 +362,8 @@ button:hover, button:active {
   bottom: 0;
   z-index: 4;
   color: white; }
-  .finish-screen #slide-down {
+  .finish-screen .slide-down {
     width: 80%;
-    top: 10%;
     position: absolute;
     left: 50%;
     -webkit-transform: translateX(-50%);
@@ -368,11 +373,11 @@ button:hover, button:active {
     animation: slide-down .5s;
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both; }
-    .finish-screen #slide-down h1 {
+    .finish-screen .slide-down h1 {
       font-size: 5rem; }
-    .finish-screen #slide-down h2 {
+    .finish-screen .slide-down h2 {
       font-size: 3rem; }
-    .finish-screen #slide-down h3 {
+    .finish-screen .slide-down h3 {
       margin: 0 50px;
       font-size: 2rem; }
   .finish-screen .slide-up {
@@ -390,13 +395,13 @@ button:hover, button:active {
   0% {
     top: -200px; }
   100% {
-    top: 0; } }
+    top: 50px; } }
 
 @keyframes slide-down {
   0% {
     top: -200px; }
   100% {
-    top: 0; } }
+    top: 50px; } }
 
 @-webkit-keyframes slide-up {
   0% {
@@ -594,7 +599,7 @@ button:hover, button:active {
     100% {
       right: -10%; } } }
 
-@media (max-width: 700px) and (max-height: 400px) {
+@media (max-width: 800px) and (max-height: 420px) {
   @-webkit-keyframes hilary-entrance {
     0% {
       left: -300px; }
@@ -616,14 +621,11 @@ button:hover, button:active {
     100% {
       right: 5%; } }
   #instructions {
-    top: 5%; }
+    top: 20px; }
   #slide-down {
-    position: absolute;
-    float: right;
-    width: 50%;
-    text-align: right; }
+    left: 50%;
+    text-align: left; }
+    #slide-down h3 {
+      margin: 0; }
   #slide-up {
-    position: absolute;
-    float: left;
-    left: 0;
-    width: 50%; } }
+    left: 80%; } }

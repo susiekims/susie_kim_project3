@@ -279,7 +279,6 @@ game.init = () => {
         game.playSound('trump-start.wav');
         $('#player').attr('src', 'assets/trump.png')
         setTimeout(()=>{
-            // game.playGame();
             game.showInstuctions();
         }, 1000);
     });

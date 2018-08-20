@@ -9,10 +9,8 @@
     z-index: 4;
     color: white; 
 
-    #slide-down {
-        // animation: slide-down .5s .5s;
+    .slide-down {
         width: 80%;
-        top: 10%;
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
@@ -46,7 +44,7 @@
             top: -200px;
         }
         100% {
-            top: 0;
+            top: 50px;
         }
     }
 
