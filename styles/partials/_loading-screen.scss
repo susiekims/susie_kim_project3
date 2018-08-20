@@ -22,7 +22,8 @@
     }
 
     .banner {
-        width: 380px;
+        width: 300px;
+        min-width: 300px;
         position: absolute;
         left: 50%;
         transform: translateX(-50%);

@@ -4,7 +4,7 @@ const game = {};
 // game variables 
 game.score = 0;
 game.lives = 5;
-game.time = 30000;
+game.time = 5000;
 game.numberOfBalls = 30;
 game.speed = 2000;
 game.numberOfColumns = 5;
@@ -16,6 +16,7 @@ game.ballTypes = [
     `assets/hair.png`,
     `assets/hilaryfixed.png`
 ];
+
 game.catch = 'hair.png';
 game.dodge = 'hilaryfixed.png';
 game.player = 'trump.png';
@@ -28,7 +29,7 @@ game.finishImageGood = `assets/trump-win.png`;
 game.finishImageBad = `assets/trump-pissed.png`;
 game.instructions = `Catch as many toupes as you can! But don't get caught by Hillary. Use your arrow keys or click the side of the screen you want to move to.`;
 game.loseAudio = 'trump-lose.mp3';
-game.winAudio = 'trump-win-audio.mp3';
+game.winAudio = 'trump-win-audio.wav';
 game.catchAudio = 'chaching.mp3';
 game.dodgeAudio ='buzzer.wav';
 
