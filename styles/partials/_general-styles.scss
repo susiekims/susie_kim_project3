@@ -7,7 +7,6 @@ body {
     color: white; 
     background: radial-gradient($primary, #0a153a);
     text-transform: uppercase;
-    // overflow: hidden; 
     letter-spacing: 0.3rem;
 }
 
@@ -24,5 +23,12 @@ button {
 }
 
 button:hover, button:active {
-    background: red;
+    background: #b20402;
+}
+
+.volume {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    margin: 20px;
 }
