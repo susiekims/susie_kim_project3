@@ -247,6 +247,7 @@ game.showLives = (numberOfLives) => {
 // function to start actual game play
 game.playGame = () => {
     game.responsiveResize();
+    $('.stage').toggle(true);
     $('#game-items').toggle(true);
     $('#score span').text(game.score);
     game.showLives(game.lives);
@@ -270,6 +271,7 @@ game.init = () => {
     $('#finish-screen').toggle(false);
     $('#game-items').toggle(false);
     $('#instructions').toggle(false);
+    $('.stage').toggle(false);
     $('.trump-head').on('click', function(){
         game.playSound('trump-start.wav');
         $('#player').attr('src', 'assets/trump.png')

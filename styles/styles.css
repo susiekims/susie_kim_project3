@@ -148,7 +148,9 @@ body {
   background: -o-radial-gradient(#2342c7, #0a153a);
   background: radial-gradient(#2342c7, #0a153a);
   text-transform: uppercase;
-  letter-spacing: 0.3rem; }
+  letter-spacing: 0.3rem;
+  width: 100%;
+  height: 100%; }
 
 button {
   background: #931514;
@@ -180,11 +182,9 @@ p {
   overflow: hidden;
   padding: 20px;
   text-align: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  position: relative;
+  width: 100%;
+  height: 100vh;
   z-index: 3;
   text-transform: uppercase;
   text-align: center; }
