@@ -16,7 +16,6 @@ game.ballTypes = [
     `assets/hair.png`,
     `assets/hilaryfixed.png`
 ];
-
 game.catch = 'hair.png';
 game.dodge = 'hilaryfixed.png';
 game.player = 'trump.png';
@@ -27,11 +26,12 @@ game.goodScoreText = `You look amazing, Mr. President!`;
 game.badScoreText = `Did you even try? Good luck getting a second term with THAT hair...`
 game.finishImageGood = `assets/trump-win.png`;
 game.finishImageBad = `assets/trump-pissed.png`;
-game.instructions = `Catch as many toupes as you can! But don't get caught by Hillary. Use your arrow keys or click the side of the screen you want to move to.`;
+game.instructions = `Catch as many toupes as you can! But don't get caught by Hillary.`;
 game.loseAudio = 'trump-lose.mp3';
 game.winAudio = 'trump-win-audio.wav';
 game.catchAudio = 'chaching.mp3';
 game.dodgeAudio ='buzzer.wav';
+
 
 //function to play sounds
 game.playSound = (soundFile, loop = false) => {
@@ -261,13 +261,11 @@ game.playGame = () => {
             game.moveBall(i);
         }, Math.random()*game.time);
     }  
-
 }
 
 // initialize game
 // if user chooses hillary, game variables are changed
 game.init = () => {
-    game.playSound('president.wav', true);
     $('#loading-screen').toggle(true);
     $('#finish-screen').toggle(false);
     $('#game-items').toggle(false);
@@ -284,11 +282,11 @@ game.init = () => {
         $('#player').attr('src', 'assets/hilaryfixed.png');
         game.ballTypes = [
             `assets/email.png`,
-            `assets/trump.png`
+            `assets/kissy-trump.png`
         ];
         game.player = 'hilaryfixed.png';
         game.catch = 'email.png';
-        game.dodge = 'trump.png';
+        game.dodge = 'kissy-trump.png';
         game.playerSmile = 'hilary-smile.png';
         game.playerAngry = 'hilary-sad.png';  
         game.finishImageGood = `assets/hilary-win.png`;
@@ -296,9 +294,7 @@ game.init = () => {
         game.noLivesText = `Emails exposed... DAB!`;
         game.goodScoreText = `Great work getting all the emails!`;
         game.badScoreText = `Do you think this is a game? This is why you lost the election...`; 
-        game.instructions = `You have ${game.time / 1000} seconds to stop as many emails as you can! 
-        But don't let Trump catch you. 
-        Use the arrow keys or click the side you want to move to.`
+        game.instructions = `You have ${game.time / 1000} seconds to stop as many emails as you can! But don't let Trump catch you. `
         game.loseAudio = 'hilary-lose.wav';
         game.winAudio = 'hilary-win-audio.wav';
         game.catchAudio = 'ding.wav';

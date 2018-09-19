@@ -153,7 +153,6 @@ body {
 button {
   background: #931514;
   border: none;
-  border-radius: 5px;
   color: white;
   font-size: 1.2rem;
   letter-spacing: .5rem;
@@ -166,11 +165,16 @@ button {
 button:hover, button:active {
   background: #b20402; }
 
-.volume {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  margin: 20px; }
+h1 {
+  font-size: 3.5rem; }
+
+h2 {
+  font-size: 2.5rem; }
+
+p {
+  text-transform: none;
+  letter-spacing: 0.03rem;
+  font-size: 1.8rem; }
 
 .loading-screen {
   overflow: hidden;
@@ -189,7 +193,17 @@ button:hover, button:active {
     line-height: 0.7;
     text-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3); }
   .loading-screen .title {
-    margin-top: 50px; }
+    position: absolute;
+    top: 70px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    -webkit-animation: fade-in 3s 1s;
+    animation: fade-in 3s 1s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    opacity: 0; }
   .loading-screen .banner {
     width: 300px;
     min-width: 300px;
@@ -198,18 +212,36 @@ button:hover, button:active {
     -webkit-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
     transform: translateX(-50%);
-    bottom: 100px; }
+    -webkit-animation: banner-entrance .5s ease-out 1.8s;
+    animation: banner-entrance .5s ease-out 1.8s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both; }
   .loading-screen h2 {
     font-size: 1.2rem;
     position: absolute;
-    bottom: 125px;
     left: 50%;
     -webkit-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
     transform: translateX(-50%);
     font-weight: 600;
     letter-spacing: 0.3rem;
-    width: 100%; }
+    width: 100%;
+    -webkit-animation: text-entrance .5s ease-out 1.8s;
+    animation: text-entrance .5s ease-out 1.8s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both; }
+
+@-webkit-keyframes text-entrance {
+  0% {
+    bottom: -200px; }
+  100% {
+    bottom: 125px; } }
+
+@keyframes text-entrance {
+  0% {
+    bottom: -200px; }
+  100% {
+    bottom: 125px; } }
   .loading-screen .head {
     top: 50%;
     width: 200px;
@@ -222,28 +254,6 @@ button:hover, button:active {
     -o-transition: all .2s;
     transition: all .2s;
     cursor: pointer; }
-
-@-webkit-keyframes glow {
-  0% {
-    -webkit-filter: drop-shadow(0px 0px -5px white);
-    filter: drop-shadow(0px 0px -5px white); }
-  50% {
-    -webkit-filter: drop-shadow(0px 0px 5px white);
-    filter: drop-shadow(0px 0px 5px white); }
-  100% {
-    -webkit-filter: drop-shadow(0px 0px -5px white);
-    filter: drop-shadow(0px 0px -5px white); } }
-
-@keyframes glow {
-  0% {
-    -webkit-filter: drop-shadow(0px 0px -5px white);
-    filter: drop-shadow(0px 0px -5px white); }
-  50% {
-    -webkit-filter: drop-shadow(0px 0px 5px white);
-    filter: drop-shadow(0px 0px 5px white); }
-  100% {
-    -webkit-filter: drop-shadow(0px 0px -5px white);
-    filter: drop-shadow(0px 0px -5px white); } }
   .loading-screen .head:hover {
     z-index: 1; }
   .loading-screen .head:active {
@@ -267,30 +277,6 @@ button:hover, button:active {
     animation: hilary-entrance 1s .5s ease, glow 2s 2s infinite;
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both; }
-
-@-webkit-keyframes hilary-entrance {
-  0% {
-    left: -300px; }
-  100% {
-    left: 30%; } }
-
-@keyframes hilary-entrance {
-  0% {
-    left: -300px; }
-  100% {
-    left: 30%; } }
-
-@-webkit-keyframes trump-entrance {
-  0% {
-    right: -300px; }
-  100% {
-    right: 30%; } }
-
-@keyframes trump-entrance {
-  0% {
-    right: -300px; }
-  100% {
-    right: 30%; } }
   .loading-screen .name {
     font-size: 5rem;
     position: absolute;
@@ -325,32 +311,79 @@ button:hover, button:active {
     transition: top .5s;
     letter-spacing: .5rem; }
   .loading-screen .trump-head:hover ~ .trump-slogan {
-    top: 50px; }
+    top: 55px; }
   .loading-screen .hilary-head:hover ~ .hilary-slogan {
-    top: 50px; }
+    top: 55px; }
 
-#instructions {
-  position: absolute;
-  top: 20%;
-  font-size: 1.8rem;
-  text-align: center;
-  z-index: 10;
-  padding: 0 20%; }
-  #instructions .levels {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    width: 300px;
-    margin: 0 auto; }
-    #instructions .levels button {
-      -ms-flex-preferred-size: 100%;
-      flex-basis: 100%;
-      width: 100%;
-      margin: 10px 0px; }
+@-webkit-keyframes glow {
+  0% {
+    -webkit-filter: drop-shadow(0px 0px -5px white);
+    filter: drop-shadow(0px 0px -5px white); }
+  50% {
+    -webkit-filter: drop-shadow(0px 0px 5px white);
+    filter: drop-shadow(0px 0px 5px white); }
+  100% {
+    -webkit-filter: drop-shadow(0px 0px -5px white);
+    filter: drop-shadow(0px 0px -5px white); } }
+
+@keyframes glow {
+  0% {
+    -webkit-filter: drop-shadow(0px 0px -5px white);
+    filter: drop-shadow(0px 0px -5px white); }
+  50% {
+    -webkit-filter: drop-shadow(0px 0px 5px white);
+    filter: drop-shadow(0px 0px 5px white); }
+  100% {
+    -webkit-filter: drop-shadow(0px 0px -5px white);
+    filter: drop-shadow(0px 0px -5px white); } }
+
+@-webkit-keyframes hilary-entrance {
+  0% {
+    left: -300px; }
+  100% {
+    left: 30%; } }
+
+@keyframes hilary-entrance {
+  0% {
+    left: -300px; }
+  100% {
+    left: 30%; } }
+
+@-webkit-keyframes trump-entrance {
+  0% {
+    right: -300px; }
+  100% {
+    right: 30%; } }
+
+@keyframes trump-entrance {
+  0% {
+    right: -300px; }
+  100% {
+    right: 30%; } }
+
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@keyframes fade-in {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@-webkit-keyframes banner-entrance {
+  0% {
+    bottom: -200px; }
+  100% {
+    bottom: 100px; } }
+
+@keyframes banner-entrance {
+  0% {
+    bottom: -200px; }
+  100% {
+    bottom: 100px; } }
 
 .finish-screen {
   overflow: hidden;
@@ -373,13 +406,8 @@ button:hover, button:active {
     animation: slide-down .5s;
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both; }
-    .finish-screen .slide-down h1 {
-      font-size: 5rem; }
-    .finish-screen .slide-down h2 {
-      font-size: 3rem; }
-    .finish-screen .slide-down h3 {
-      margin: 0 50px;
-      font-size: 2rem; }
+    .finish-screen .slide-down p {
+      margin: 0 50px; }
   .finish-screen .slide-up {
     position: absolute;
     -webkit-animation: slide-up .5s;
@@ -415,6 +443,39 @@ button:hover, button:active {
   100% {
     bottom: 0; } }
 
+#instructions {
+  position: relative;
+  text-align: center;
+  height: 100vh;
+  z-index: 10; }
+  #instructions .instructions-wrapper {
+    width: 50%;
+    min-width: 300px;
+    max-width: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); }
+  #instructions p {
+    margin-bottom: 20px; }
+  #instructions .levels {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 200px;
+    margin: 0 auto; }
+    #instructions .levels button {
+      -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+      width: 100%;
+      margin: 10px 0px; }
+
 .stage {
   overflow: hidden;
   max-width: 600px;
@@ -444,10 +505,6 @@ button:hover, button:active {
 
 .ball {
   position: absolute;
-  /* width: 100px; */
-  /* height: 100px; */
-  /* border-radius: 50%; */
-  /* background: blue; */
   top: -100px; }
 
 #score {
@@ -499,9 +556,7 @@ button:hover, button:active {
     0% {
       right: -300px; }
     100% {
-      right: 25%; } }
-  #instructions {
-    padding: 0 20%; } }
+      right: 25%; } } }
 
 @media (max-width: 815px) {
   @-webkit-keyframes hilary-entrance {
@@ -548,8 +603,6 @@ button:hover, button:active {
       right: 15%; } } }
 
 @media (max-width: 600px) {
-  #instructions {
-    padding: 0px 10px; }
   @-webkit-keyframes hilary-entrance {
     0% {
       left: -300px; }
@@ -620,8 +673,6 @@ button:hover, button:active {
       right: -300px; }
     100% {
       right: 5%; } }
-  #instructions {
-    top: 20px; }
   #slide-down {
     left: 50%;
     text-align: left; }

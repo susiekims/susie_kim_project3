@@ -16,18 +16,9 @@
         transform: translateX(-50%);
         animation: slide-down .5s;
         animation-fill-mode: both;
-
-        h1 {
-            font-size: 5rem;
-        }
     
-        h2 {
-            font-size: 3rem;
-        }
-    
-        h3 {
+        p {
             margin: 0 50px;
-            font-size: 2rem;
         }
     }
 

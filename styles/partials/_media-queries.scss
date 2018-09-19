@@ -8,10 +8,6 @@
         0% {right: -300px}
         100% {right: 25%}
     }
-
-    #instructions {
-        padding: 0 20%;
-    }
 }
 
 @media (max-width: 815px) {
@@ -39,9 +35,6 @@
 }
 
 @media (max-width: 600px) {
-    #instructions {
-        padding: 0px 10px;
-    }
 
     @keyframes hilary-entrance {
         0% {left: -300px}
@@ -89,11 +82,7 @@
         0% {right: -300px}
         100% {right: 5%}
     }
-
-    #instructions {
-        top: 20px;
-    }
-
+    
     #slide-down {
         left: 50%;
         text-align: left;

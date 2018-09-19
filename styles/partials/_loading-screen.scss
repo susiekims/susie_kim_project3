@@ -18,7 +18,13 @@
     }
 
     .title {
-        margin-top: 50px;
+        position: absolute;
+        top: 70px;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: fade-in 3s 1s;
+        animation-fill-mode: forwards;
+        opacity: 0;
     }
 
     .banner {
@@ -27,18 +33,25 @@
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-        bottom: 100px;
+        animation: banner-entrance .5s ease-out 1.8s;
+        animation-fill-mode: both;
     }
 
     h2 {
         font-size: 1.2rem;
         position: absolute;
-        bottom: 125px;
         left: 50%;
         transform: translateX(-50%);
         font-weight: 600;
         letter-spacing: 0.3rem;
         width: 100%;
+        animation: text-entrance .5s ease-out 1.8s;
+        animation-fill-mode: both;
+    }
+
+    @keyframes text-entrance {
+        0% {bottom: -200px};
+        100% {bottom: 125px};
     }
 
     .head {
@@ -49,19 +62,6 @@
         position: absolute;
         transition: all .2s;
         cursor: pointer;
-    }
-
-
-    @keyframes glow {
-        0% {
-            filter: drop-shadow(0px 0px -5px white);
-        }
-        50% {
-            filter: drop-shadow(0px 0px 5px white);
-        }
-        100% {
-            filter: drop-shadow(0px 0px -5px white);
-        }
     }
 
     .head:hover {
@@ -92,16 +92,6 @@
         animation-fill-mode: both;
     }
 
-    @keyframes hilary-entrance {
-        0% {left: -300px}
-        100% {left: 30%}
-    }
-
-    @keyframes trump-entrance {
-        0% {right: -300px}
-        100% {right: 30%}
-    }
-
     .name {
         font-size: 5rem;
         position: absolute;
@@ -112,10 +102,6 @@
     .hilary-head:hover ~ .hilary-name, .trump-head:hover ~ .trump-name {
         left: 50%;
     }
-
-    // .trump-head:hover ~ .trump-name {
-    //     left: 50%;
-    // }
 
     .hilary-name {
         left: -100px;
@@ -140,36 +126,44 @@
     }
 
     .trump-head:hover ~ .trump-slogan {
-        top: 50px;
+        top: 55px;
     }
 
     .hilary-head:hover ~ .hilary-slogan {
-        top: 50px;
+        top: 55px;
     }
     
 }
 
-#instructions {
-    position: absolute;
-    top: 20%;
-    font-size: 1.8rem;
-    text-align: center;
-    z-index: 10;
-    padding: 0 20%;
 
-    .levels {
-        display: flex;
-        flex-direction: column;
-        width: 300px;
-        margin: 0 auto;
-
-        button {
-            flex-basis:  100%;
-            width: 100%;
-            margin: 10px 0px;
-        }
+@keyframes glow {
+    0% {
+        filter: drop-shadow(0px 0px -5px white);
     }
-
+    50% {
+        filter: drop-shadow(0px 0px 5px white);
+    }
+    100% {
+        filter: drop-shadow(0px 0px -5px white);
+    }
 }
 
+@keyframes hilary-entrance {
+    0% {left: -300px}
+    100% {left: 30%}
+}
 
+@keyframes trump-entrance {
+    0% {right: -300px}
+    100% {right: 30%}
+}
+
+@keyframes fade-in {
+    0% {opacity: 0}
+    100% {opacity: 1}
+}
+
+@keyframes banner-entrance {
+    0% {bottom: -200px};
+    100% {bottom: 100px};
+}

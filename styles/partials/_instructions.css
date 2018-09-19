@@ -1,0 +1,24 @@
+#instructions {
+  width: 100%;
+  position: absolute;
+  top: 20%;
+  font-size: 1.8rem;
+  text-align: center;
+  z-index: 10;
+  padding: 0 20%; }
+  #instructions .levels {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 300px;
+    margin: 0 auto; }
+    #instructions .levels button {
+      -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+      width: 100%;
+      margin: 10px 0px;
+      text-transform: uppercase; }
